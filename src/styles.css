@@ -1,0 +1,1747 @@
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap');
+
+:root {
+    font-family: 'Golos Text', Arial, sans-serif;
+    color: #252b28;
+    background: #f7f8f6;
+    font-synthesis: none;
+    font-size: 16px
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0
+}
+
+button, input, select, textarea {
+    font: inherit
+}
+
+button, a, input, select, textarea {
+    -webkit-tap-highlight-color: transparent
+}
+
+button {
+    cursor: pointer
+}
+
+button:focus-visible, a:focus-visible {
+    outline: 3px solid #759b21;
+    outline-offset: 4px
+}
+
+button {
+    transition: background .18s, transform .18s
+}
+
+button:active {
+    transform: translateY(1px)
+}
+
+svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round
+}
+
+button {
+    border: 0
+}
+
+h1, h2, h3, p {
+    margin: 0
+}
+
+.rail {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 86px;
+    background: #222823;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    z-index: 5
+}
+
+.brand {
+    color: #cef75c;
+    text-decoration: none;
+    font-size: 47px;
+    font-weight: 800;
+    letter-spacing: -4px;
+    margin-top: 22px;
+    line-height: 1
+}
+
+.brand span {
+    display: none
+}
+
+.brand b {
+    font-size: 12px;
+    letter-spacing: 0;
+    vertical-align: top;
+    display: inline-block;
+    margin: 5px 0 0 5px
+}
+
+.rail-rule {
+    width: 30px;
+    height: 1px;
+    background: #465044;
+    margin: 30px 0
+}
+
+.rail-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: #cef75c;
+    color: #252b28;
+    display: grid;
+    place-items: center
+}
+
+.rail-bottom {
+    margin-top: auto;
+    margin-bottom: 25px
+}
+
+.avatar {
+    display: grid;
+    place-items: center;
+    background: #40493f;
+    border: 1px solid #5c655a;
+    border-radius: 50%;
+    width: 37px;
+    height: 37px;
+    font-size: 12px
+}
+
+.app {
+    margin-left: 86px
+}
+
+header {
+    height: 77px;
+    padding: 0 42px;
+    border-bottom: 1px solid #e5e7e1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff
+}
+
+.crumb {
+    font-size: 13px;
+    color: #777e76;
+    display: flex;
+    gap: 16px
+}
+
+.crumb b {
+    font-weight: 500;
+    color: #333b32
+}
+
+.crumb span {
+    color: #b8beb6
+}
+
+.workspace {
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 13px
+}
+
+.workspace-avatar {
+    border: 1px solid #e1e4dc;
+    background: #f1f3ed;
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+    display: grid;
+    place-items: center;
+    font-weight: 600
+}
+
+.page-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 39px 42px 34px
+}
+
+.eyebrow {
+    font-size: 10px;
+    letter-spacing: 1.8px;
+    color: #78816e;
+    font-weight: 600;
+    margin-bottom: 10px
+}
+
+h1 {
+    font-size: 34px;
+    letter-spacing: -1.5px;
+    font-weight: 600;
+    line-height: 1.15
+}
+
+h1 > span {
+    color: #86aa2b
+}
+
+.page-heading p {
+    font-size: 14px;
+    color: #7c827a;
+    margin-top: 13px
+}
+
+.primary {
+    background: #cef75c;
+    color: #222b1b;
+    padding: 14px 21px;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    white-space: nowrap;
+    box-shadow: 0 2px 0 #bddf58
+}
+
+.primary:hover {
+    background: #bee74c
+}
+
+main {
+    margin: 0 42px;
+    display: grid;
+    grid-template-columns:350px minmax(0, 1fr);
+    align-items: stretch;
+    border: 1px solid #e1e5db;
+    border-radius: 14px;
+    overflow: hidden;
+    background: white
+}
+
+.editor {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #e1e5db
+}
+
+.editor-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px 25px 19px
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -.5px
+}
+
+.step {
+    font-size: 11px;
+    color: #9ba195;
+    font-variant-numeric: tabular-nums
+}
+
+.tabs {
+    display: flex;
+    margin: 0 25px 4px;
+    background: #f3f5ef;
+    padding: 4px;
+    border-radius: 8px
+}
+
+.tabs button {
+    width: 50%;
+    padding: 9px;
+    font-size: 13px;
+    font-weight: 500;
+    background: none;
+    color: #7c8477;
+    border-radius: 5px
+}
+
+.tabs button.active {
+    background: white;
+    color: #252b28;
+    box-shadow: 0 1px 4px #1b2b1612
+}
+
+.panel {
+    padding: 25px
+}
+
+.panel[hidden] {
+    display: none
+}
+
+label {
+    font-size: 13px;
+    font-weight: 500;
+    display: block
+}
+
+input:not([type=checkbox]):not([type=color]):not([type=file]), select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dde1d6;
+    border-radius: 7px;
+    background: #fff;
+    color: #343d31;
+    font-size: 13px;
+    outline: none;
+    margin-top: 9px;
+    transition: border-color .2s
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #819c49 !important;
+    box-shadow: 0 0 0 3px #cef75c35
+}
+
+.field small, .upload small {
+    display: block;
+    color: #92978c;
+    font-size: 11px;
+    margin-top: 8px
+}
+
+small {
+    line-height: 1.6
+}
+
+.divider {
+    height: 1px;
+    background: #edf0e8;
+    margin: 24px 0
+}
+
+h3 {
+    font-size: 13px;
+    font-weight: 600
+}
+
+.section-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px
+}
+
+.section-label small {
+    font-size: 11px;
+    color: #8d9586;
+    display: block;
+    margin-top: 4px
+}
+
+.switch input {
+    position: absolute;
+    opacity: 0
+}
+
+.switch span {
+    display: block;
+    width: 32px;
+    height: 19px;
+    border-radius: 20px;
+    background: #d9ded3;
+    position: relative;
+    cursor: pointer
+}
+
+.switch span:after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    background: white;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px #0002;
+    transition: transform .2s
+}
+
+.switch input:checked + span {
+    background: #a4c757
+}
+
+.switch input:checked + span:after {
+    transform: translateX(13px)
+}
+
+.switch input:focus-visible + span {
+    outline: 3px solid #759b21;
+    outline-offset: 3px
+}
+
+.upload {
+    padding: 16px 12px;
+    margin-top: 17px;
+    border: 1px dashed #cfd7c4;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    background: #fafbf8
+}
+
+.logo-sample, .invoice-logo {
+    background: #cef75c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -4px;
+    color: #252b28;
+    flex: none;
+    width: 56px;
+    height: 56px;
+    border-radius: 6px;
+    overflow: hidden
+}
+
+.logo-sample span, .invoice-logo span {
+    font-size: 21px;
+    margin-left: 3px;
+    margin-top: -16px;
+    letter-spacing: 0
+}
+
+.logo-sample img, .invoice-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain
+}
+
+.text-button {
+    font-size: 12px;
+    font-weight: 500;
+    background: none;
+    padding: 0;
+    color: #48543d
+}
+
+.text-button:hover {
+    text-decoration: underline
+}
+
+.upload .text-button span {
+    margin-left: 5px
+}
+
+.remove {
+    margin-top: 10px
+}
+
+.color-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 19px
+}
+
+.color-row label {
+    font-size: 12px
+}
+
+.color-row small {
+    display: block;
+    font-size: 10px;
+    font-weight: 400;
+    color: #949b8e;
+    margin-top: 3px
+}
+
+.color-input {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    border: 1px solid #e0e5d9;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-family: monospace
+}
+
+.color-input input {
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    background: none;
+    border: 0;
+    cursor: pointer
+}
+
+.color-input input::-webkit-color-swatch-wrapper {
+    padding: 0
+}
+
+.color-input input::-webkit-color-swatch {
+    border: 0;
+    border-radius: 4px
+}
+
+.palette-label {
+    font-size: 11px;
+    color: #8b9482;
+    margin: 20px 0 10px
+}
+
+.palettes {
+    display: flex;
+    gap: 10px
+}
+
+.palette {
+    width: 52px;
+    height: 30px;
+    display: flex;
+    padding: 4px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    background: #fff;
+    position: relative
+}
+
+.palette i {
+    width: 50%;
+    height: 20px
+}
+
+.palette i:first-child {
+    border-radius: 3px 0 0 3px
+}
+
+.palette i:nth-child(2) {
+    border-radius: 0 3px 3px 0
+}
+
+.palette.active {
+    border-color: #7c9758
+}
+
+.palette span {
+    display: none;
+    position: absolute;
+    right: 8px;
+    top: 5px;
+    color: white;
+    font-size: 12px
+}
+
+.palette.active span {
+    display: block
+}
+
+.type-example {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 13px;
+    background: #f7f8f4;
+    border-radius: 6px;
+    margin-top: 12px
+}
+
+.type-example > span {
+    font-size: 38px;
+    letter-spacing: -3px
+}
+
+.type-example div {
+    font-size: 11px;
+    line-height: 1.5
+}
+
+.type-example small {
+    font-size: 10px;
+    color: #979e8f;
+    margin-left: auto
+}
+
+.payment-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 13px
+}
+
+.payment-tags span {
+    font-size: 10px;
+    padding: 5px 7px;
+    border: 1px solid #e4e8dc;
+    border-radius: 5px;
+    color: #6f7a65
+}
+
+.editor-footer {
+    margin-top: auto;
+    padding: 20px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #e9ede2;
+    gap: 10px
+}
+
+.reset {
+    background: none;
+    color: #7c8575;
+    padding: 0;
+    font-size: 16px
+}
+
+.reset span {
+    font-size: 11px;
+    margin-left: 4px
+}
+
+.editor-footer > span {
+    font-size: 10px;
+    color: #91998a
+}
+
+.field + .field {
+    margin-top: 22px
+}
+
+textarea {
+    resize: vertical;
+    min-height: 75px
+}
+
+.preview {
+    background: #edf0e9;
+    min-width: 0
+}
+
+.preview-toolbar {
+    padding: 21px 25px;
+    border-bottom: 1px solid #dde3d6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: #f4f6f0
+}
+
+.preview-toolbar > div {
+    display: flex;
+    align-items: center;
+    gap: 9px
+}
+
+.live-dot {
+    width: 6px;
+    height: 6px;
+    background: #819e58;
+    border-radius: 50%
+}
+
+.preview-toolbar b {
+    font-size: 12px;
+    font-weight: 500
+}
+
+.live-label {
+    font-size: 10px;
+    color: #919985;
+    margin-left: 6px
+}
+
+.print-button {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: transparent;
+    color: #68755b;
+    font-size: 11px
+}
+
+.print-button svg {
+    width: 17px;
+    height: 17px
+}
+
+.canvas {
+    padding: 26px 38px 24px;
+    max-width: 850px;
+    margin: auto
+}
+
+.paper-caption {
+    font-size: 10px;
+    color: #8b9581;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 13px
+}
+
+.paper-caption span:first-child {
+    overflow-wrap: anywhere
+}
+
+.paper {
+    --accent: #cef75c;
+    --ink: #252b28;
+    color: var(--ink);
+    background: #fff;
+    border-radius: 2px;
+    padding: 40px 40px 22px;
+    box-shadow: 0 3px 7px #38402909, 0 16px 40px #3840290c;
+    border-top: 4px solid var(--accent);
+    min-height: 785px;
+    font-family: var(--paper-font, 'Golos Text', Arial, sans-serif);
+    overflow-wrap: anywhere
+}
+
+.invoice-brand-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px
+}
+
+.invoice-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px
+}
+
+.invoice-logo {
+    height: 43px;
+    width: 43px;
+    border-radius: 3px;
+    font-size: 32px;
+    background: var(--accent);
+    color: var(--ink)
+}
+
+.invoice-logo span {
+    font-size: 16px;
+    margin-top: -10px
+}
+
+.invoice-brand b {
+    font-size: 12px;
+    display: block;
+    font-weight: 600
+}
+
+.invoice-brand div > span {
+    font-size: 8px;
+    display: block;
+    margin-top: 5px;
+    opacity: .55
+}
+
+.invoice-category {
+    font-size: 7px;
+    line-height: 1.8;
+    letter-spacing: 1.1px;
+    opacity: .5;
+    text-align: right
+}
+
+.invoice-title {
+    margin-top: 38px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 15px
+}
+
+.invoice-title h2 {
+    font-size: 31px;
+    letter-spacing: -1.2px;
+    font-weight: 500;
+    line-height: 1.1
+}
+
+.invoice-title > span {
+    font-size: 9px;
+    white-space: nowrap;
+    opacity: .55;
+    padding-bottom: 3px
+}
+
+.invoice-meta {
+    display: grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap: 12px;
+    padding: 23px 0;
+    margin-top: 23px;
+    border-top: 1px solid #e8ebe3;
+    border-bottom: 1px solid #e8ebe3
+}
+
+.paper small {
+    font-size: 7px;
+    letter-spacing: .6px;
+    color: inherit;
+    opacity: .55;
+    display: block
+}
+
+.invoice-meta b {
+    font-size: 9px;
+    font-weight: 400;
+    display: block;
+    margin-top: 7px
+}
+
+.invoice-meta strong {
+    font-size: 16px;
+    font-weight: 600;
+    display: block;
+    margin-top: 4px
+}
+
+.invoice-meta > div:last-child {
+    text-align: right
+}
+
+.addresses {
+    display: grid;
+    grid-template-columns:1fr 1fr;
+    gap: 25px;
+    margin: 28px 0
+}
+
+.addresses h3 {
+    font-size: 11px;
+    margin: 8px 0
+}
+
+.addresses p {
+    font-size: 9px;
+    line-height: 1.8;
+    opacity: .6
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9px
+}
+
+th {
+    text-align: left;
+    font-size: 7px;
+    font-weight: 500;
+    letter-spacing: .7px;
+    opacity: .5;
+    padding: 12px 0;
+    border-bottom: 1px solid #dfe5d9
+}
+
+th:nth-child(2), td:nth-child(2) {
+    text-align: center
+}
+
+th:last-child, td:last-child {
+    text-align: right;
+    white-space: nowrap
+}
+
+td {
+    padding: 14px 0;
+    border-bottom: 1px solid #edf0e8
+}
+
+td b {
+    font-weight: 500;
+    font-size: 10px
+}
+
+td small {
+    font-size: 8px !important;
+    letter-spacing: 0 !important;
+    margin-top: 3px
+}
+
+.totals {
+    margin: 19px 0 18px auto;
+    width: 47%;
+    font-size: 9px
+}
+
+.totals div {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 10px 0
+}
+
+.totals b {
+    font-weight: 500
+}
+
+.totals div > span:first-child {
+    opacity: .55
+}
+
+.grand-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    background: var(--accent);
+    color: var(--accent-ink, #252b28);
+    padding: 18px 19px;
+    border-radius: 4px
+}
+
+.grand-total > span {
+    font-size: 11px;
+    font-weight: 500
+}
+
+.grand-total strong {
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: -1px
+}
+
+.grand-total strong span {
+    font-size: 20px;
+    font-weight: 400
+}
+
+.invoice-notes {
+    margin-top: 25px
+}
+
+.invoice-notes h4 {
+    font-size: 9px;
+    margin: 0 0 7px;
+    font-weight: 500
+}
+
+.invoice-notes p {
+    font-size: 8px;
+    line-height: 1.7;
+    opacity: .55;
+    max-width: 365px;
+    white-space: pre-wrap
+}
+
+#invoicePayments {
+    font-size: 7px;
+    opacity: .65;
+    margin-top: 12px
+}
+
+.invoice-footer {
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    border-top: 1px solid #edf0e8;
+    margin-top: 25px;
+    padding-top: 16px;
+    font-size: 7px;
+    opacity: .6
+}
+
+.invoice-footer p {
+    max-width: 85%;
+    white-space: pre-wrap
+}
+
+.invoice-footer span {
+    white-space: nowrap
+}
+
+.preview-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    font-size: 10px;
+    color: #959f8b;
+    margin-top: 23px
+}
+
+.preview-bottom > span {
+    font-size: 16px
+}
+
+.app-footer {
+    display: flex;
+    justify-content: space-between;
+    margin: 23px 43px 25px;
+    font-size: 10px;
+    color: #9ba391
+}
+
+.mobile-tabs {
+    display: none
+}
+
+dialog {
+    border: 1px solid #dce2d3;
+    border-radius: 16px;
+    padding: 28px;
+    width: min(430px, calc(100% - 32px));
+    color: #252b28;
+    box-shadow: 0 25px 100px #18251230
+}
+
+dialog::backdrop {
+    background: #18251b66;
+    backdrop-filter: blur(3px)
+}
+
+.dialog-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px
+}
+
+.close {
+    background: none;
+    font-size: 26px;
+    color: #6a745f
+}
+
+dialog p {
+    font-size: 14px;
+    color: #7b846f;
+    margin: 13px 0 23px
+}
+
+.check-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    padding: 12px 0
+}
+
+.check-row input {
+    width: 18px;
+    height: 18px;
+    accent-color: #87a942
+}
+
+dialog .primary {
+    width: 100%;
+    margin-top: 20px
+}
+
+.toast {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translate(-50%, 15px);
+    background: #252b28;
+    color: white;
+    border-radius: 9px;
+    padding: 15px 24px;
+    font-size: 13px;
+    box-shadow: 0 8px 30px #0003;
+    opacity: 0;
+    pointer-events: none;
+    transition: .25s;
+    max-width: 90%;
+    z-index: 10
+}
+
+.toast.visible {
+    opacity: 1;
+    transform: translate(-50%, 0)
+}
+
+@media (min-width: 1500px) {
+    main {
+        grid-template-columns:385px minmax(0, 1fr)
+    }
+
+    .canvas {
+        max-width: 800px
+    }
+
+    .paper {
+        min-height: 900px;
+        padding: 48px
+    }
+
+    .invoice-title {
+        margin-top: 48px
+    }
+
+    .invoice-notes {
+        margin-top: 38px
+    }
+
+    .invoice-footer {
+        margin-top: 35px
+    }
+
+    .panel {
+        padding: 28px
+    }
+}
+
+@media (max-width: 1190px) {
+    .rail {
+        width: 65px
+    }
+
+    .app {
+        margin-left: 65px
+    }
+
+    header {
+        padding: 0 25px
+    }
+
+    .page-heading {
+        padding: 32px 25px
+    }
+
+    .page-heading h1 {
+        font-size: 30px
+    }
+
+    main {
+        margin: 0 25px;
+        grid-template-columns:305px minmax(0, 1fr)
+    }
+
+    .panel {
+        padding: 21px
+    }
+
+    .editor-heading {
+        padding: 22px 21px 18px
+    }
+
+    .tabs {
+        margin-left: 21px;
+        margin-right: 21px
+    }
+
+    .canvas {
+        padding: 23px 22px
+    }
+
+    .paper {
+        padding: 28px 25px 20px;
+        min-height: 750px
+    }
+
+    .invoice-title h2 {
+        font-size: 26px
+    }
+
+    .live-label {
+        display: none
+    }
+
+    .color-row small {
+        font-size: 9px
+    }
+
+    .app-footer {
+        margin-left: 25px;
+        margin-right: 25px
+    }
+}
+
+@media (max-width: 950px) and (min-width: 701px) {
+    .rail {
+        width: 56px
+    }
+
+    .app {
+        margin-left: 56px
+    }
+
+    header {
+        padding: 0 20px
+    }
+
+    .workspace {
+        display: none
+    }
+
+    .page-heading {
+        padding: 28px 20px;
+        align-items: flex-start
+    }
+
+    .page-heading h1 {
+        font-size: 26px
+    }
+
+    .page-heading p {
+        max-width: 280px;
+        line-height: 1.6
+    }
+
+    .primary {
+        padding: 12px;
+        font-size: 12px
+    }
+
+    .page-heading .primary svg {
+        display: none
+    }
+
+    main {
+        margin: 0 20px;
+        grid-template-columns:270px minmax(0, 1fr)
+    }
+
+    .panel {
+        padding: 18px
+    }
+
+    .upload {
+        padding: 12px 8px;
+        gap: 8px
+    }
+
+    .logo-sample {
+        width: 42px;
+        height: 42px
+    }
+
+    .upload .text-button {
+        font-size: 11px
+    }
+
+    .upload small {
+        font-size: 9px
+    }
+
+    .color-input {
+        padding: 5px;
+        gap: 4px;
+        font-size: 9px
+    }
+
+    .color-row label {
+        font-size: 11px
+    }
+
+    .color-row small {
+        max-width: 110px
+    }
+
+    .canvas {
+        padding: 20px 13px
+    }
+
+    .paper {
+        padding: 22px 18px;
+        min-height: 710px
+    }
+
+    .invoice-title {
+        display: block;
+        margin-top: 28px
+    }
+
+    .invoice-title > span {
+        display: block;
+        margin-top: 8px
+    }
+
+    .invoice-title h2 {
+        font-size: 24px
+    }
+
+    .invoice-category {
+        display: none
+    }
+
+    .invoice-meta {
+        gap: 8px
+    }
+
+    .invoice-meta small {
+        font-size: 6px
+    }
+
+    .invoice-meta b {
+        font-size: 8px
+    }
+
+    .invoice-meta strong {
+        font-size: 12px
+    }
+
+    .addresses {
+        gap: 15px
+    }
+
+    .addresses h3 {
+        font-size: 10px
+    }
+
+    td b {
+        font-size: 9px
+    }
+
+    td small {
+        font-size: 7px !important
+    }
+
+    .grand-total {
+        padding: 15px 12px
+    }
+
+    .grand-total strong {
+        font-size: 22px
+    }
+
+    .grand-total > span {
+        font-size: 9px
+    }
+
+    .paper-caption {
+        font-size: 9px
+    }
+
+    .editor-footer {
+        padding: 18px
+    }
+
+    .editor-footer > span {
+        font-size: 9px
+    }
+}
+
+@media (max-width: 700px) {
+    .rail {
+        display: none
+    }
+
+    .app {
+        margin-left: 0
+    }
+
+    header {
+        height: 58px;
+        padding: 0 20px
+    }
+
+    .crumb {
+        font-size: 11px;
+        gap: 10px
+    }
+
+    .crumb:first-letter {
+        color: #78973a
+    }
+
+    .workspace {
+        display: none
+    }
+
+    .page-heading {
+        padding: 25px 20px 22px;
+        display: block
+    }
+
+    .eyebrow {
+        font-size: 9px
+    }
+
+    h1 {
+        font-size: 29px !important
+    }
+
+    .page-heading p {
+        font-size: 12px;
+        line-height: 1.6;
+        margin-top: 10px
+    }
+
+    .page-heading > .primary {
+        margin-top: 20px;
+        width: 100%;
+        padding: 13px;
+        font-size: 13px
+    }
+
+    .mobile-tabs {
+        display: flex;
+        margin: 0 20px 16px;
+        background: #e9ede2;
+        border-radius: 8px;
+        padding: 4px;
+        position: sticky;
+        top: 0;
+        z-index: 3;
+        box-shadow: 0 0 0 7px #f7f8f6
+    }
+
+    .mobile-tabs button {
+        background: none;
+        padding: 11px 8px;
+        width: 50%;
+        border-radius: 5px;
+        font-size: 13px;
+        color: #7d8674
+    }
+
+    .mobile-tabs button.active {
+        background: #252b28;
+        color: white
+    }
+
+    main {
+        display: block;
+        margin: 0 15px;
+        border-radius: 12px
+    }
+
+    .editor {
+        border-right: 0
+    }
+
+    .editor-heading {
+        padding: 23px
+    }
+
+    .tabs {
+        margin: 0 23px
+    }
+
+    .panel {
+        padding: 23px
+    }
+
+    .editor label, .editor h3 {
+        font-size: 14px
+    }
+
+    .editor input:not([type=checkbox]):not([type=color]):not([type=file]), select, textarea {
+        font-size: 16px
+    }
+
+    .field small {
+        font-size: 12px
+    }
+
+    .upload {
+        padding: 16px
+    }
+
+    .upload .text-button {
+        font-size: 14px
+    }
+
+    .upload small {
+        font-size: 11px
+    }
+
+    .color-row {
+        margin-top: 22px
+    }
+
+    .color-row small {
+        font-size: 11px
+    }
+
+    .color-input {
+        font-size: 12px;
+        padding: 8px
+    }
+
+    .color-input input {
+        width: 26px;
+        height: 26px
+    }
+
+    .palette-label {
+        font-size: 12px
+    }
+
+    .palette {
+        width: 61px;
+        height: 37px;
+        padding: 5px
+    }
+
+    .palette i {
+        height: 25px
+    }
+
+    .palette span {
+        top: 8px;
+        right: 10px
+    }
+
+    .type-example {
+        padding: 18px
+    }
+
+    .type-example div {
+        font-size: 12px
+    }
+
+    .type-example small {
+        font-size: 11px
+    }
+
+    .payment-tags span {
+        font-size: 11px
+    }
+
+    .section-label .text-button {
+        font-size: 12px
+    }
+
+    .editor-footer {
+        padding: 21px 23px
+    }
+
+    .editor-footer > span, .reset span {
+        font-size: 11px
+    }
+
+    .preview {
+        display: none
+    }
+
+    [data-mobile-view=preview] .editor {
+        display: none
+    }
+
+    [data-mobile-view=preview] .preview {
+        display: block
+    }
+
+    .preview-toolbar {
+        padding: 19px 17px
+    }
+
+    .canvas {
+        padding: 20px 12px
+    }
+
+    .paper {
+        padding: 25px 20px 20px;
+        min-height: 700px
+    }
+
+    .invoice-brand b {
+        font-size: 11px
+    }
+
+    .invoice-category {
+        font-size: 6px
+    }
+
+    .invoice-title {
+        margin-top: 30px;
+        display: block
+    }
+
+    .invoice-title h2 {
+        font-size: 28px
+    }
+
+    .invoice-title > span {
+        display: block;
+        margin-top: 9px
+    }
+
+    .invoice-meta {
+        margin-top: 19px;
+        padding: 19px 0;
+        gap: 8px
+    }
+
+    .invoice-meta strong {
+        font-size: 14px
+    }
+
+    .invoice-meta b {
+        font-size: 8px
+    }
+
+    .addresses {
+        margin: 23px 0
+    }
+
+    .addresses h3 {
+        font-size: 10px
+    }
+
+    .addresses p {
+        font-size: 8px
+    }
+
+    td b {
+        font-size: 9px
+    }
+
+    td small {
+        font-size: 7px !important
+    }
+
+    table {
+        font-size: 8px
+    }
+
+    .grand-total {
+        padding: 16px 13px
+    }
+
+    .grand-total strong {
+        font-size: 24px
+    }
+
+    .grand-total > span {
+        font-size: 10px
+    }
+
+    .invoice-footer {
+        font-size: 7px
+    }
+
+    .app-footer {
+        font-size: 9px;
+        margin: 22px 20px;
+        gap: 12px
+    }
+
+    .paper-caption {
+        font-size: 9px
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        scroll-behavior: auto !important
+    }
+}
+
+@media print {
+    @page {
+        size: A4;
+        margin: 0
+    }
+
+    body {
+        background: white
+    }
+
+    .rail, header, .page-heading, .mobile-tabs, .editor, .preview-toolbar, .paper-caption, .preview-bottom, .app-footer, .toast, dialog {
+        display: none !important
+    }
+
+    .app {
+        margin: 0
+    }
+
+    main {
+        display: block;
+        margin: 0;
+        border: 0;
+        border-radius: 0
+    }
+
+    .preview {
+        display: block !important;
+        background: white
+    }
+
+    .canvas {
+        padding: 0;
+        max-width: none
+    }
+
+    .paper {
+        width: 210mm;
+        min-height: 297mm;
+        padding: 18mm;
+        box-shadow: none;
+        border-radius: 0;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact
+    }
+
+    .invoice-title {
+        margin-top: 40px
+    }
+
+    .invoice-title h2 {
+        font-size: 40px
+    }
+
+    .invoice-meta {
+        padding: 30px 0
+    }
+
+    .addresses {
+        margin: 40px 0
+    }
+
+    td {
+        padding: 20px 0
+    }
+
+    .invoice-notes {
+        margin-top: 35px
+    }
+
+    .invoice-footer {
+        margin-top: 40px
+    }
+}
+
+app-root {
+    display: block
+}
+
+.invoice-logo, .logo-sample {
+    letter-spacing: -2px
+}
+
+.invoice-logo img, .logo-sample img {
+    letter-spacing: normal
+}
+
+@media (min-width: 701px) {
+    .color-row small {
+        max-width: 145px
+    }
+
+    .section-label small {
+        max-width: 170px
+    }
+}
