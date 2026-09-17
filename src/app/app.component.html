@@ -51,13 +51,13 @@
 
     <div class="mobile-tabs">
       <button
-        [class.active]="mobileView() === 'editor'"
-        (click)="mobileView.set('editor')">
+        [class.active]="mobileView() === mobileViews.editor"
+        (click)="mobileView.set(mobileViews.editor)">
         Settings
       </button>
       <button
-        [class.active]="mobileView() === 'preview'"
-        (click)="mobileView.set('preview')">
+        [class.active]="mobileView() === mobileViews.preview"
+        (click)="mobileView.set(mobileViews.preview)">
         Preview
       </button>
     </div>
@@ -66,7 +66,7 @@
       <section class="editor">
         <div class="editor-heading">
           <h2>Appearance</h2>
-          <span class="step">{{ activeTab() === 'design' ? '01 / 02' : '02 / 02' }}</span>
+          <span class="step">{{ activeTab() === editorTab.design ? '01 / 02' : '02 / 02' }}</span>
         </div>
 
         <div
@@ -74,31 +74,31 @@
           role="tablist"
           aria-label="Template settings">
           <button
-            [class.active]="activeTab() === 'design'"
-            [attr.aria-selected]="activeTab() === 'design'"
+            [class.active]="activeTab() === editorTab.design"
+            [attr.aria-selected]="activeTab() === editorTab.design"
             role="tab"
-            (click)="activeTab.set('design')">
+            (click)="activeTab.set(editorTab.design)">
             Design
           </button>
           <button
-            [class.active]="activeTab() === 'content'"
-            [attr.aria-selected]="activeTab() === 'content'"
+            [class.active]="activeTab() === editorTab.content"
+            [attr.aria-selected]="activeTab() === editorTab.content"
             role="tab"
-            (click)="activeTab.set('content')">
+            (click)="activeTab.set(editorTab.content)">
             Content
           </button>
         </div>
 
         <div
-          [hidden]="activeTab() !== 'design'"
+          [hidden]="activeTab() !== editorTab.design"
           class="panel"
           id="design-panel">
           <div class="field">
             <label for="name">Template name</label>
             <input
               [ngModel]="state().name"
+              [maxlength]="maxTemplateNameLength"
               id="name"
-              maxlength="60"
               (ngModelChange)="update('name', $event)" />
             <small>Only visible to you</small>
           </div>
@@ -142,9 +142,9 @@
             </div>
             <input
               #logoFile
+              [accept]="logoAccept"
               type="file"
               id="logoFile"
-              accept="image/png,image/jpeg,image/svg+xml"
               hidden
               (change)="uploadLogo($event)" />
           </div>
@@ -172,7 +172,7 @@
                 type="color"
                 aria-label="Primary color"
                 (ngModelChange)="update('accent', $event)" />
-              <span id="accentHex">{{ state().accent.toUpperCase() }}</span>
+              <span id="accentHex">{{ accentHex() }}</span>
             </div>
           </div>
 
@@ -188,52 +188,24 @@
                 type="color"
                 aria-label="Text color"
                 (ngModelChange)="update('ink', $event)" />
-              <span id="inkHex">{{ state().ink.toUpperCase() }}</span>
+              <span id="inkHex">{{ inkHex() }}</span>
             </div>
           </div>
 
           <div class="palette-label">Curated combinations</div>
           <div class="palettes">
-            <button
-              [class.active]="state().accent === '#cef75c' && state().ink === '#252b28'"
-              [attr.aria-pressed]="state().accent === '#cef75c' && state().ink === '#252b28'"
-              class="palette"
-              aria-label="Lime & charcoal"
-              (click)="setPalette('#cef75c', '#252b28')">
-              <i class="swatch-cef75c"></i>
-              <i class="swatch-252b28"></i>
-              <span>вњ“</span>
-            </button>
-            <button
-              [class.active]="state().accent === '#b7c9ff' && state().ink === '#252a48'"
-              [attr.aria-pressed]="state().accent === '#b7c9ff' && state().ink === '#252a48'"
-              class="palette"
-              aria-label="Blue & indigo"
-              (click)="setPalette('#b7c9ff', '#252a48')">
-              <i class="swatch-b7c9ff"></i>
-              <i class="swatch-252a48"></i>
-              <span>вњ“</span>
-            </button>
-            <button
-              [class.active]="state().accent === '#ffc2a7' && state().ink === '#57372f'"
-              [attr.aria-pressed]="state().accent === '#ffc2a7' && state().ink === '#57372f'"
-              class="palette"
-              aria-label="Peach & cocoa"
-              (click)="setPalette('#ffc2a7', '#57372f')">
-              <i class="swatch-ffc2a7"></i>
-              <i class="swatch-57372f"></i>
-              <span>вњ“</span>
-            </button>
-            <button
-              [class.active]="state().accent === '#e9d7fb' && state().ink === '#473455'"
-              [attr.aria-pressed]="state().accent === '#e9d7fb' && state().ink === '#473455'"
-              class="palette"
-              aria-label="Lilac & plum"
-              (click)="setPalette('#e9d7fb', '#473455')">
-              <i class="swatch-e9d7fb"></i>
-              <i class="swatch-473455"></i>
-              <span>вњ“</span>
-            </button>
+            @for (palette of palettes(); track palette.accent) {
+              <button
+                [class.active]="palette.isSelected"
+                [attr.aria-pressed]="palette.isSelected"
+                [attr.aria-label]="palette.label"
+                class="palette"
+                (click)="setPalette(palette.accent, palette.ink)">
+                <i [style.background]="palette.accent"></i>
+                <i [style.background]="palette.ink"></i>
+                <span>✓</span>
+              </button>
+            }
           </div>
 
           <div class="divider"></div>
@@ -243,9 +215,9 @@
             [ngModel]="state().font"
             id="font"
             (ngModelChange)="update('font', $event)">
-            <option value="sans">Modern В· Sans Serif</option>
-            <option value="serif">Classic В· Serif</option>
-            <option value="mono">Technical В· Mono</option>
+            @for (font of fontOptions; track font.value) {
+              <option [value]="font.value">{{ font.label }}</option>
+            }
           </select>
 
           <div
@@ -283,15 +255,15 @@
         </div>
 
         <div
-          [hidden]="activeTab() !== 'content'"
+          [hidden]="activeTab() !== editorTab.content"
           class="panel"
           id="content-panel">
           <div class="field">
             <label for="company">Company name</label>
             <input
               [ngModel]="state().company"
+              [maxlength]="maxTemplateNameLength"
               id="company"
-              maxlength="60"
               (ngModelChange)="update('company', $event)" />
           </div>
 
@@ -309,8 +281,8 @@
             <label for="client">Bill to</label>
             <input
               [ngModel]="state().client"
+              [maxlength]="maxTemplateNameLength"
               id="client"
-              maxlength="60"
               (ngModelChange)="update('client', $event)" />
           </div>
 
@@ -355,164 +327,10 @@
         </div>
       </section>
 
-      <section class="preview">
-        <div class="preview-toolbar">
-          <div>
-            <span class="live-dot"></span>
-            <b>Preview</b>
-            <span class="live-label">Updates in real time</span>
-          </div>
-          <button
-            class="print-button"
-            id="print"
-            aria-label="Print or save as PDF"
-            title="Print or save as PDF"
-            (click)="print()">
-            <svg viewBox="0 0 24 24">
-              <path d="M7 8V3h10v5M7 17H4V9h16v8h-3M7 14h10v7H7zM16 11h1" />
-            </svg>
-            <span>PDF</span>
-          </button>
-        </div>
-
-        <div class="canvas">
-          <div class="paper-caption">
-            <span id="previewName">{{ state().name || 'Untitled template' }}</span>
-            <span>A4 В· 210 Г— 297 mm</span>
-          </div>
-
-          <article
-            [style.--accent]="state().accent"
-            [style.--ink]="state().ink"
-            [style.--accent-ink]="accentInk()"
-            [style.--paper-font]="paperFont()"
-            class="paper"
-            id="invoice">
-            <div class="invoice-brand-row">
-              <div class="invoice-brand">
-                <span
-                  [style.background]="state().accent"
-                  [style.display]="state().logoVisible ? 'flex' : 'none'"
-                  class="invoice-logo"
-                  id="invoiceLogo">
-                  @if (state().logo) {
-                    <img
-                      [src]="state().logo"
-                      alt="Company logo" />
-                  } @else {
-                    f<span>в†—</span>
-                  }
-                </span>
-                <div>
-                  <b id="companyView">{{ state().company }}</b>
-                  <span>Design with character</span>
-                </div>
-              </div>
-              <span class="invoice-category">DESIGN STUDIO<br />INVOICE / 2026</span>
-            </div>
-
-            <div class="invoice-title">
-              <h2 id="titleView">{{ state().invoiceTitle }}</h2>
-              <span>No. 2026вЂ”042</span>
-            </div>
-
-            <div class="invoice-meta">
-              <div>
-                <small>ISSUED ON</small>
-                <b>September 16, 2026</b>
-              </div>
-              <div>
-                <small>DUE DATE</small>
-                <b>September 30, 2026</b>
-              </div>
-              <div>
-                <small>AMOUNT DUE</small>
-                <strong>$4,800.00</strong>
-              </div>
-            </div>
-
-            <div class="addresses">
-              <div>
-                <small>FROM</small>
-                <h3 id="senderView">{{ state().company }}</h3>
-                <p>
-                  Kate Anderson<br />Tax ID 123456789<br /><span id="emailView">{{ state().email }}</span>
-                </p>
-              </div>
-              <div>
-                <small>BILL TO</small>
-                <h3 id="clientView">{{ state().client }}</h3>
-                <p>Alex Morgan<br />7 Park Street, London<br />team&#64;horizon.design</p>
-              </div>
-            </div>
-
-            <table>
-              <thead>
-                <tr>
-                  <th>DESCRIPTION</th>
-                  <th>QTY</th>
-                  <th>AMOUNT</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <b>Brand identity</b>
-                    <small>Logo, color palette & typography</small>
-                  </td>
-                  <td>1</td>
-                  <td>$2,750.00</td>
-                </tr>
-                <tr>
-                  <td>
-                    <b>Website design</b>
-                    <small>Homepage & 4 inner pages</small>
-                  </td>
-                  <td>1</td>
-                  <td>$1,800.00</td>
-                </tr>
-                <tr>
-                  <td>
-                    <b>Brand guidelines</b>
-                    <small>Your brandвЂ™s everyday playbook</small>
-                  </td>
-                  <td>1</td>
-                  <td>$250.00</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <div class="totals">
-              <div>
-                <span>Subtotal</span>
-                <b>$4,800.00</b>
-              </div>
-              <div>
-                <span>VAT</span>
-                <span>Not applicable</span>
-              </div>
-            </div>
-
-            <div class="grand-total">
-              <span>Total due</span>
-              <strong><span>$</span>4,800.00</strong>
-            </div>
-
-            <div class="invoice-notes">
-              <h4>Payment terms</h4>
-              <p id="termsView">{{ state().terms }}</p>
-              <div id="invoice-payments">{{ state().payments.join(' В· ') }}</div>
-            </div>
-
-            <footer class="invoice-footer">
-              <p id="noteView">{{ state().note }}</p>
-              <span>01 / 01</span>
-            </footer>
-          </article>
-
-          <div class="preview-bottom"><span>в—€</span> Your style. On every invoice.</div>
-        </div>
-      </section>
+      <app-invoice-preview
+        [state]="state()"
+        class="preview"
+        (printRequested)="print()" />
     </main>
 
     <footer class="app-footer">
@@ -538,30 +356,16 @@
         </button>
       </div>
       <p>Choose what appears on your invoice.</p>
-      <label class="check-row">
-        <input
-          [checked]="draftPayments().includes('Bank transfer')"
-          type="checkbox"
-          id="bank"
-          (change)="togglePayment('Bank transfer', $event)" />
-        Bank transfer
-      </label>
-      <label class="check-row">
-        <input
-          [checked]="draftPayments().includes('Credit card')"
-          type="checkbox"
-          id="card"
-          (change)="togglePayment('Credit card', $event)" />
-        Credit card
-      </label>
-      <label class="check-row">
-        <input
-          [checked]="draftPayments().includes('PayPal')"
-          type="checkbox"
-          id="sbp"
-          (change)="togglePayment('PayPal', $event)" />
-        PayPal
-      </label>
+      @for (payment of paymentChoices(); track payment.id) {
+        <label class="check-row">
+          <input
+            [checked]="payment.isSelected"
+            [id]="payment.id"
+            type="checkbox"
+            (change)="togglePayment(payment.label, $event)" />
+          {{ payment.label }}
+        </label>
+      }
       <button
         class="primary"
         id="applyPayments"

@@ -1,0 +1,156 @@
+<div class="preview-toolbar">
+  <div>
+    <span class="live-dot"></span>
+    <b>Preview</b>
+    <span class="live-label">Updates in real time</span>
+  </div>
+  <button
+    class="print-button"
+    id="print"
+    aria-label="Print or save as PDF"
+    title="Print or save as PDF"
+    (click)="printRequested.emit()">
+    <svg viewBox="0 0 24 24">
+      <path d="M7 8V3h10v5M7 17H4V9h16v8h-3M7 14h10v7H7zM16 11h1" />
+    </svg>
+    <span>PDF</span>
+  </button>
+</div>
+
+<div class="canvas">
+  <div class="paper-caption">
+    <span id="previewName">{{ state().name || 'Untitled template' }}</span>
+    <span>A4 В· 210 Г— 297 mm</span>
+  </div>
+
+  <article
+    [style.--accent]="state().accent"
+    [style.--ink]="state().ink"
+    [style.--accent-ink]="accentInk()"
+    [style.--paper-font]="paperFont()"
+    class="paper"
+    id="invoice">
+    <div class="invoice-brand-row">
+      <div class="invoice-brand">
+        <span
+          [style.background]="state().accent"
+          [style.display]="state().logoVisible ? 'flex' : 'none'"
+          class="invoice-logo"
+          id="invoiceLogo">
+          @if (state().logo) {
+            <img
+              [src]="state().logo"
+              alt="Company logo" />
+          } @else {
+            f<span>в†—</span>
+          }
+        </span>
+        <div>
+          <b id="companyView">{{ state().company }}</b>
+          <span>Design with character</span>
+        </div>
+      </div>
+      <span class="invoice-category">DESIGN STUDIO<br />INVOICE / 2026</span>
+    </div>
+
+    <div class="invoice-title">
+      <h2 id="titleView">{{ state().invoiceTitle }}</h2>
+      <span>No. 2026вЂ”042</span>
+    </div>
+
+    <div class="invoice-meta">
+      <div>
+        <small>ISSUED ON</small>
+        <b>September 16, 2026</b>
+      </div>
+      <div>
+        <small>DUE DATE</small>
+        <b>September 30, 2026</b>
+      </div>
+      <div>
+        <small>AMOUNT DUE</small>
+        <strong>$4,800.00</strong>
+      </div>
+    </div>
+
+    <div class="addresses">
+      <div>
+        <small>FROM</small>
+        <h3 id="senderView">{{ state().company }}</h3>
+        <p>
+          Kate Anderson<br />Tax ID 123456789<br /><span id="emailView">{{ state().email }}</span>
+        </p>
+      </div>
+      <div>
+        <small>BILL TO</small>
+        <h3 id="clientView">{{ state().client }}</h3>
+        <p>Alex Morgan<br />7 Park Street, London<br />team&#64;horizon.design</p>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>DESCRIPTION</th>
+          <th>QTY</th>
+          <th>AMOUNT</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <b>Brand identity</b>
+            <small>Logo, color palette & typography</small>
+          </td>
+          <td>1</td>
+          <td>$2,750.00</td>
+        </tr>
+        <tr>
+          <td>
+            <b>Website design</b>
+            <small>Homepage & 4 inner pages</small>
+          </td>
+          <td>1</td>
+          <td>$1,800.00</td>
+        </tr>
+        <tr>
+          <td>
+            <b>Brand guidelines</b>
+            <small>Your brandвЂ™s everyday playbook</small>
+          </td>
+          <td>1</td>
+          <td>$250.00</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="totals">
+      <div>
+        <span>Subtotal</span>
+        <b>$4,800.00</b>
+      </div>
+      <div>
+        <span>VAT</span>
+        <span>Not applicable</span>
+      </div>
+    </div>
+
+    <div class="grand-total">
+      <span>Total due</span>
+      <strong><span>$</span>4,800.00</strong>
+    </div>
+
+    <div class="invoice-notes">
+      <h4>Payment terms</h4>
+      <p id="termsView">{{ state().terms }}</p>
+      <div id="invoice-payments">{{ paymentSummary() }}</div>
+    </div>
+
+    <footer class="invoice-footer">
+      <p id="noteView">{{ state().note }}</p>
+      <span>01 / 01</span>
+    </footer>
+  </article>
+
+  <div class="preview-bottom"><span>в—€</span> Your style. On every invoice.</div>
+</div>

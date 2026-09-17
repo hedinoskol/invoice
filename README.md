@@ -16,7 +16,7 @@ Open http://127.0.0.1:4200.
 ## Code quality
 
 ```sh
-npm run lint          # ESLint for TypeScript/Angular templates and Stylelint for CSS
+npm run lint          # ESLint for TypeScript/Angular templates and Stylelint for CSS/SCSS
 npm run lint:fix      # Apply automatic lint fixes
 npm run format       # Format project files with Prettier
 npm run format:check # Check formatting without changing files
@@ -29,11 +29,19 @@ The configurations are adapted from the supplied reference files:
   targets `src/**/*.html` and keeps one attribute per line.
 - ESLint checks Angular templates and TypeScript with type information from `tsconfig.eslint.json`, plus JavaScript configuration files. It
   applies Angular, import, naming and sorting rules. Prettier handles formatting.
-- Stylelint uses the standard CSS preset because this project uses CSS, plus the reference's property ordering, BEM class naming, nesting
-  limits and other custom rules.
+- Stylelint uses the standard CSS preset and an SCSS preset for `.scss` files, plus the reference's property ordering, BEM class naming,
+  nesting limits and other custom rules.
 
 `node_modules/`, `dist/`, `.angular/` and `.idea/` are excluded from Git and formatting. Linters also exclude generated files and
 dependencies.
+
+## Project guidance
+
+[AGENTS.md](AGENTS.md) links to the five project skills in `.agents/skills/`: Angular development, development conventions, TypeScript,
+branch review and commit messages. They are adapted to this repository's stack from the supplied Claude skills.
+
+The editor owns template state, saving, logo uploads and payment selection. `InvoicePreviewComponent` receives the template through a signal
+input and emits print requests. Template options and validation are kept in `template-state.*`; color calculations are in `color.util.ts`.
 
 ## Production
 

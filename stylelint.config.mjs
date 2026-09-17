@@ -9,6 +9,12 @@ const propertiesOrder = propertyGroups.map((properties) => ({
 export default {
   extends: ['stylelint-config-standard', 'stylelint-config-clean-order'],
   ignoreFiles: ['**/node_modules/**', '**/dist/**', '**/.angular/**'],
+  overrides: [
+    {
+      extends: ['stylelint-config-standard-scss'],
+      files: ['**/*.scss'],
+    },
+  ],
   rules: {
     'alpha-value-notation': 'number',
     'at-rule-empty-line-before': [
