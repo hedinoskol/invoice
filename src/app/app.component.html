@@ -1,13 +1,24 @@
 <div [attr.data-mobile-view]="mobileView()">
   <aside class="rail">
-    <a class="brand" href="#" aria-label="Folio">
+    <a
+      class="brand"
+      href="#"
+      aria-label="Folio">
       f<span>olio</span><b>В®</b>
     </a>
     <div class="rail-rule"></div>
-    <button class="rail-icon selected" aria-label="Template editor" title="Template editor">
+    <button
+      class="rail-icon selected"
+      aria-label="Template editor"
+      title="Template editor">
       <svg viewBox="0 0 24 24">
-        <rect x="4" y="3" width="16" height="18" rx="3"/>
-        <path d="M8 8h8M8 12h8M8 16h4"/>
+        <rect
+          x="4"
+          y="3"
+          width="16"
+          height="18"
+          rx="3" />
+        <path d="M8 8h8M8 12h8M8 16h4" />
       </svg>
     </button>
     <div class="rail-bottom">
@@ -17,12 +28,8 @@
 
   <div class="app">
     <header>
-      <div class="crumb">
-        Workspace <span>/</span> Templates <span>/</span> <b>Editor</b>
-      </div>
-      <span class="workspace">
-        Forma Studio <span class="workspace-avatar">F</span>
-      </span>
+      <div class="crumb">Workspace <span>/</span> Templates <span>/</span> <b>Editor</b></div>
+      <span class="workspace"> Forma Studio <span class="workspace-avatar">F</span> </span>
     </header>
 
     <section class="page-heading">
@@ -31,19 +38,26 @@
         <h1>Make it your invoice<span>.</span></h1>
         <p>A familiar touch, from first impression to final payment.</p>
       </div>
-      <button class="primary" id="save" (click)="save()">
+      <button
+        class="primary"
+        id="save"
+        (click)="save()">
         <svg viewBox="0 0 24 24">
-          <path d="m5 12 4 4L19 6"/>
+          <path d="m5 12 4 4L19 6" />
         </svg>
         Save template
       </button>
     </section>
 
     <div class="mobile-tabs">
-      <button [class.active]="mobileView() === 'editor'" (click)="mobileView.set('editor')">
+      <button
+        [class.active]="mobileView() === 'editor'"
+        (click)="mobileView.set('editor')">
         Settings
       </button>
-      <button [class.active]="mobileView() === 'preview'" (click)="mobileView.set('preview')">
+      <button
+        [class.active]="mobileView() === 'preview'"
+        (click)="mobileView.set('preview')">
         Preview
       </button>
     </div>
@@ -55,34 +69,37 @@
           <span class="step">{{ activeTab() === 'design' ? '01 / 02' : '02 / 02' }}</span>
         </div>
 
-        <div class="tabs" role="tablist" aria-label="Template settings">
+        <div
+          class="tabs"
+          role="tablist"
+          aria-label="Template settings">
           <button
-            role="tab"
             [class.active]="activeTab() === 'design'"
             [attr.aria-selected]="activeTab() === 'design'"
-            (click)="activeTab.set('design')"
-          >
+            role="tab"
+            (click)="activeTab.set('design')">
             Design
           </button>
           <button
-            role="tab"
             [class.active]="activeTab() === 'content'"
             [attr.aria-selected]="activeTab() === 'content'"
-            (click)="activeTab.set('content')"
-          >
+            role="tab"
+            (click)="activeTab.set('content')">
             Content
           </button>
         </div>
 
-        <div class="panel" id="design-panel" [hidden]="activeTab() !== 'design'">
+        <div
+          [hidden]="activeTab() !== 'design'"
+          class="panel"
+          id="design-panel">
           <div class="field">
             <label for="name">Template name</label>
             <input
+              [ngModel]="state().name"
               id="name"
               maxlength="60"
-              [ngModel]="state().name"
-              (ngModelChange)="update('name', $event)"
-            >
+              (ngModelChange)="update('name', $event)" />
             <small>Only visible to you</small>
           </div>
 
@@ -92,41 +109,51 @@
             <h3>Company logo</h3>
             <label class="switch">
               <input
+                [ngModel]="state().logoVisible"
                 id="logoVisible"
                 type="checkbox"
-                [ngModel]="state().logoVisible"
-                (ngModelChange)="update('logoVisible', $event)"
                 aria-label="Show company logo"
-              >
+                (ngModelChange)="update('logoVisible', $event)" />
               <span></span>
             </label>
           </div>
 
           <div class="upload">
-            <div class="logo-sample" id="logoSample" [style.background]="state().accent">
+            <div
+              [style.background]="state().accent"
+              class="logo-sample"
+              id="logoSample">
               @if (state().logo) {
-                <img [src]="state().logo" alt="Company logo">
+                <img
+                  [src]="state().logo"
+                  alt="Company logo" />
               } @else {
                 f<span>в†—</span>
               }
             </div>
             <div>
-              <button class="text-button" id="uploadButton" (click)="logoFile.click()">
+              <button
+                class="text-button"
+                id="uploadButton"
+                (click)="logoFile.click()">
                 Upload logo <span>в†—</span>
               </button>
               <small>PNG, JPG or SVG В· up to 2 MB</small>
             </div>
             <input
+              #logoFile
               type="file"
               id="logoFile"
-              #logoFile
-              (change)="uploadLogo($event)"
               accept="image/png,image/jpeg,image/svg+xml"
               hidden
-            >
+              (change)="uploadLogo($event)" />
           </div>
 
-          <button id="removeLogo" class="text-button remove" [hidden]="!state().logo" (click)="update('logo', null)">
+          <button
+            [hidden]="!state().logo"
+            id="removeLogo"
+            class="text-button remove"
+            (click)="update('logo', null)">
             Restore default logo
           </button>
 
@@ -140,12 +167,11 @@
             </label>
             <div class="color-input">
               <input
+                [ngModel]="state().accent"
                 id="accent"
                 type="color"
                 aria-label="Primary color"
-                [ngModel]="state().accent"
-                (ngModelChange)="update('accent', $event)"
-              >
+                (ngModelChange)="update('accent', $event)" />
               <span id="accentHex">{{ state().accent.toUpperCase() }}</span>
             </div>
           </div>
@@ -157,12 +183,11 @@
             </label>
             <div class="color-input">
               <input
+                [ngModel]="state().ink"
                 id="ink"
                 type="color"
                 aria-label="Text color"
-                [ngModel]="state().ink"
-                (ngModelChange)="update('ink', $event)"
-              >
+                (ngModelChange)="update('ink', $event)" />
               <span id="inkHex">{{ state().ink.toUpperCase() }}</span>
             </div>
           </div>
@@ -170,47 +195,43 @@
           <div class="palette-label">Curated combinations</div>
           <div class="palettes">
             <button
-              class="palette"
               [class.active]="state().accent === '#cef75c' && state().ink === '#252b28'"
               [attr.aria-pressed]="state().accent === '#cef75c' && state().ink === '#252b28'"
-              (click)="setPalette('#cef75c', '#252b28')"
+              class="palette"
               aria-label="Lime & charcoal"
-            >
-              <i style="background:#cef75c"></i>
-              <i style="background:#252b28"></i>
+              (click)="setPalette('#cef75c', '#252b28')">
+              <i class="swatch-cef75c"></i>
+              <i class="swatch-252b28"></i>
               <span>вњ“</span>
             </button>
             <button
-              class="palette"
               [class.active]="state().accent === '#b7c9ff' && state().ink === '#252a48'"
               [attr.aria-pressed]="state().accent === '#b7c9ff' && state().ink === '#252a48'"
-              (click)="setPalette('#b7c9ff', '#252a48')"
+              class="palette"
               aria-label="Blue & indigo"
-            >
-              <i style="background:#b7c9ff"></i>
-              <i style="background:#252a48"></i>
+              (click)="setPalette('#b7c9ff', '#252a48')">
+              <i class="swatch-b7c9ff"></i>
+              <i class="swatch-252a48"></i>
               <span>вњ“</span>
             </button>
             <button
-              class="palette"
               [class.active]="state().accent === '#ffc2a7' && state().ink === '#57372f'"
               [attr.aria-pressed]="state().accent === '#ffc2a7' && state().ink === '#57372f'"
-              (click)="setPalette('#ffc2a7', '#57372f')"
+              class="palette"
               aria-label="Peach & cocoa"
-            >
-              <i style="background:#ffc2a7"></i>
-              <i style="background:#57372f"></i>
+              (click)="setPalette('#ffc2a7', '#57372f')">
+              <i class="swatch-ffc2a7"></i>
+              <i class="swatch-57372f"></i>
               <span>вњ“</span>
             </button>
             <button
-              class="palette"
               [class.active]="state().accent === '#e9d7fb' && state().ink === '#473455'"
               [attr.aria-pressed]="state().accent === '#e9d7fb' && state().ink === '#473455'"
-              (click)="setPalette('#e9d7fb', '#473455')"
+              class="palette"
               aria-label="Lilac & plum"
-            >
-              <i style="background:#e9d7fb"></i>
-              <i style="background:#473455"></i>
+              (click)="setPalette('#e9d7fb', '#473455')">
+              <i class="swatch-e9d7fb"></i>
+              <i class="swatch-473455"></i>
               <span>вњ“</span>
             </button>
           </div>
@@ -218,18 +239,21 @@
           <div class="divider"></div>
 
           <label for="font">Typography</label>
-          <select id="font" [ngModel]="state().font" (ngModelChange)="update('font', $event)">
+          <select
+            [ngModel]="state().font"
+            id="font"
+            (ngModelChange)="update('font', $event)">
             <option value="sans">Modern В· Sans Serif</option>
             <option value="serif">Classic В· Serif</option>
             <option value="mono">Technical В· Mono</option>
           </select>
 
-          <div class="type-example" [style.font-family]="paperFont()">
+          <div
+            [style.font-family]="paperFont()"
+            class="type-example">
             <span>Aa</span>
-            <div>
-              Good design is<br>in the details.
-            </div>
-            <small>Aa Bb Cc<br>0123456789</small>
+            <div>Good design is<br />in the details.</div>
+            <small>Aa Bb Cc<br />0123456789</small>
           </div>
 
           <div class="divider"></div>
@@ -239,12 +263,17 @@
               <h3>Payment methods</h3>
               <small>Shown at the bottom of your invoice</small>
             </div>
-            <button class="text-button" id="paymentsButton" (click)="openPayments(paymentsDialog)">
+            <button
+              class="text-button"
+              id="paymentsButton"
+              (click)="openPayments(paymentsDialog)">
               Manage в†—
             </button>
           </div>
 
-          <div class="payment-tags" id="paymentTags">
+          <div
+            class="payment-tags"
+            id="paymentTags">
             @for (payment of state().payments; track payment) {
               <span>{{ payment }}</span>
             } @empty {
@@ -253,73 +282,73 @@
           </div>
         </div>
 
-        <div class="panel" id="content-panel" [hidden]="activeTab() !== 'content'">
+        <div
+          [hidden]="activeTab() !== 'content'"
+          class="panel"
+          id="content-panel">
           <div class="field">
             <label for="company">Company name</label>
             <input
+              [ngModel]="state().company"
               id="company"
               maxlength="60"
-              [ngModel]="state().company"
-              (ngModelChange)="update('company', $event)"
-            >
+              (ngModelChange)="update('company', $event)" />
           </div>
 
           <div class="field">
             <label for="email">Company email</label>
             <input
+              [ngModel]="state().email"
               id="email"
               type="email"
               maxlength="80"
-              [ngModel]="state().email"
-              (ngModelChange)="update('email', $event)"
-            >
+              (ngModelChange)="update('email', $event)" />
           </div>
 
           <div class="field">
             <label for="client">Bill to</label>
             <input
+              [ngModel]="state().client"
               id="client"
               maxlength="60"
-              [ngModel]="state().client"
-              (ngModelChange)="update('client', $event)"
-            >
+              (ngModelChange)="update('client', $event)" />
           </div>
 
           <div class="field">
             <label for="invoiceTitle">Document title</label>
             <input
+              [ngModel]="state().invoiceTitle"
               id="invoiceTitle"
               maxlength="50"
-              [ngModel]="state().invoiceTitle"
-              (ngModelChange)="update('invoiceTitle', $event)"
-            >
+              (ngModelChange)="update('invoiceTitle', $event)" />
           </div>
 
           <div class="field">
             <label for="note">Thank-you note</label>
             <textarea
+              [ngModel]="state().note"
               id="note"
               rows="3"
               maxlength="250"
-              [ngModel]="state().note"
-              (ngModelChange)="update('note', $event)"
-            ></textarea>
+              (ngModelChange)="update('note', $event)"></textarea>
           </div>
 
           <div class="field">
             <label for="terms">Payment terms</label>
             <textarea
+              [ngModel]="state().terms"
               id="terms"
               rows="3"
               maxlength="350"
-              [ngModel]="state().terms"
-              (ngModelChange)="update('terms', $event)"
-            ></textarea>
+              (ngModelChange)="update('terms', $event)"></textarea>
           </div>
         </div>
 
         <div class="editor-footer">
-          <button class="reset" id="reset" (click)="reset()">
+          <button
+            class="reset"
+            id="reset"
+            (click)="reset()">
             в†є <span>Reset changes</span>
           </button>
           <span id="saveStatus">{{ isSaved() ? 'Saved' : 'Unsaved changes' }}</span>
@@ -336,12 +365,11 @@
           <button
             class="print-button"
             id="print"
-            (click)="print()"
             aria-label="Print or save as PDF"
             title="Print or save as PDF"
-          >
+            (click)="print()">
             <svg viewBox="0 0 24 24">
-              <path d="M7 8V3h10v5M7 17H4V9h16v8h-3M7 14h10v7H7zM16 11h1"/>
+              <path d="M7 8V3h10v5M7 17H4V9h16v8h-3M7 14h10v7H7zM16 11h1" />
             </svg>
             <span>PDF</span>
           </button>
@@ -354,23 +382,23 @@
           </div>
 
           <article
-            class="paper"
-            id="invoice"
             [style.--accent]="state().accent"
             [style.--ink]="state().ink"
             [style.--accent-ink]="accentInk()"
             [style.--paper-font]="paperFont()"
-          >
+            class="paper"
+            id="invoice">
             <div class="invoice-brand-row">
               <div class="invoice-brand">
                 <span
-                  class="invoice-logo"
-                  id="invoiceLogo"
                   [style.background]="state().accent"
                   [style.display]="state().logoVisible ? 'flex' : 'none'"
-                >
+                  class="invoice-logo"
+                  id="invoiceLogo">
                   @if (state().logo) {
-                    <img [src]="state().logo" alt="Company logo">
+                    <img
+                      [src]="state().logo"
+                      alt="Company logo" />
                   } @else {
                     f<span>в†—</span>
                   }
@@ -380,7 +408,7 @@
                   <span>Design with character</span>
                 </div>
               </div>
-              <span class="invoice-category">DESIGN STUDIO<br>INVOICE / 2026</span>
+              <span class="invoice-category">DESIGN STUDIO<br />INVOICE / 2026</span>
             </div>
 
             <div class="invoice-title">
@@ -407,12 +435,14 @@
               <div>
                 <small>FROM</small>
                 <h3 id="senderView">{{ state().company }}</h3>
-                <p>Kate Anderson<br>Tax ID 123456789<br><span id="emailView">{{ state().email }}</span></p>
+                <p>
+                  Kate Anderson<br />Tax ID 123456789<br /><span id="emailView">{{ state().email }}</span>
+                </p>
               </div>
               <div>
                 <small>BILL TO</small>
                 <h3 id="clientView">{{ state().client }}</h3>
-                <p>Alex Morgan<br>7 Park Street, London<br>team&#64;horizon.design</p>
+                <p>Alex Morgan<br />7 Park Street, London<br />team&#64;horizon.design</p>
               </div>
             </div>
 
@@ -471,7 +501,7 @@
             <div class="invoice-notes">
               <h4>Payment terms</h4>
               <p id="termsView">{{ state().terms }}</p>
-              <div id="invoicePayments">{{ state().payments.join(' В· ') }}</div>
+              <div id="invoice-payments">{{ state().payments.join(' В· ') }}</div>
             </div>
 
             <footer class="invoice-footer">
@@ -480,9 +510,7 @@
             </footer>
           </article>
 
-          <div class="preview-bottom">
-            <span>в—€</span> Your style. On every invoice.
-          </div>
+          <div class="preview-bottom"><span>в—€</span> Your style. On every invoice.</div>
         </div>
       </section>
     </main>
@@ -493,43 +521,60 @@
     </footer>
   </div>
 
-  <dialog id="paymentsDialog" #paymentsDialog>
-    <form method="dialog" (submit)="closePayments($event, paymentsDialog)">
+  <dialog
+    #paymentsDialog
+    id="paymentsDialog">
+    <form
+      method="dialog"
+      (submit)="closePayments($event, paymentsDialog)">
       <div class="dialog-heading">
         <h2>Payment methods</h2>
-        <button type="button" (click)="paymentsDialog.close()" aria-label="Close" class="close">Г—</button>
+        <button
+          type="button"
+          aria-label="Close"
+          class="close"
+          (click)="paymentsDialog.close()">
+          Г—
+        </button>
       </div>
       <p>Choose what appears on your invoice.</p>
       <label class="check-row">
         <input
+          [checked]="draftPayments().includes('Bank transfer')"
           type="checkbox"
           id="bank"
-          [checked]="draftPayments().includes('Bank transfer')"
-          (change)="togglePayment('Bank transfer', $event)"
-        >
+          (change)="togglePayment('Bank transfer', $event)" />
         Bank transfer
       </label>
       <label class="check-row">
         <input
+          [checked]="draftPayments().includes('Credit card')"
           type="checkbox"
           id="card"
-          [checked]="draftPayments().includes('Credit card')"
-          (change)="togglePayment('Credit card', $event)"
-        >
+          (change)="togglePayment('Credit card', $event)" />
         Credit card
       </label>
       <label class="check-row">
         <input
+          [checked]="draftPayments().includes('PayPal')"
           type="checkbox"
           id="sbp"
-          [checked]="draftPayments().includes('PayPal')"
-          (change)="togglePayment('PayPal', $event)"
-        >
+          (change)="togglePayment('PayPal', $event)" />
         PayPal
       </label>
-      <button class="primary" id="applyPayments" value="apply">Apply changes</button>
+      <button
+        class="primary"
+        id="applyPayments"
+        value="apply">
+        Apply changes
+      </button>
     </form>
   </dialog>
 
-  <div class="toast" [class.visible]="toastMessage()" role="status">{{ toastMessage() }}</div>
+  <div
+    [class.visible]="toastMessage()"
+    class="toast"
+    role="status">
+    {{ toastMessage() }}
+  </div>
 </div>
