@@ -1,0 +1,32 @@
+<aside class="invoice-studio__rail">
+  <a
+    class="invoice-studio__brand ui-link"
+    href="#"
+    aria-label="Folio">
+    f<span class="invoice-studio__brand-name">olio</span><b class="invoice-studio__brand-mark">®</b>
+  </a>
+  <div class="invoice-studio__rail-divider"></div>
+  <button
+    class="invoice-studio__navigation-button ui-button invoice-studio__navigation-button--selected"
+    aria-label="Template editor"
+    title="Template editor"
+    (click)="studio.mobileView.set(studio.mobileViews.editor); studio.activeTab.set(studio.editorTab.design)">
+    <svg
+      class="ui-icon"
+      viewBox="0 0 24 24">
+      <rect
+        class="ui-icon__shape"
+        x="4"
+        y="3"
+        width="16"
+        height="18"
+        rx="3" />
+      <path
+        class="ui-icon__path"
+        d="M8 8h8M8 12h8M8 16h4" />
+    </svg>
+  </button>
+  <div class="invoice-studio__rail-footer">
+    <span class="invoice-studio__avatar">KA</span>
+  </div>
+</aside>

@@ -1,0 +1,95 @@
+:host {
+  display: contents;
+}
+
+.invoice-studio__rail {
+  position: fixed;
+  z-index: 5;
+  inset: 0 auto 0 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  width: 65px;
+  color: white;
+  background: #222823;
+}
+
+.invoice-studio__brand {
+  margin-top: 20px;
+  font-size: 47px;
+  font-weight: 800;
+  line-height: 1;
+  color: #cef75c;
+  text-decoration: none;
+  letter-spacing: -4px;
+}
+
+.invoice-studio__brand-name {
+  display: none;
+}
+
+.invoice-studio__brand-mark {
+  display: inline-block;
+  margin: 4px 0 0 4px;
+  font-size: 12px;
+  letter-spacing: 0;
+  vertical-align: top;
+}
+
+.invoice-studio__rail-divider {
+  width: 30px;
+  height: 1px;
+  margin: 32px 0;
+  background: #465044;
+}
+
+.invoice-studio__navigation-button {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  color: #252b28;
+  background: #cef75c;
+}
+
+.invoice-studio__rail-footer {
+  margin-top: auto;
+  margin-bottom: 24px;
+}
+
+.invoice-studio__avatar {
+  display: grid;
+  place-items: center;
+  width: 37px;
+  height: 37px;
+  border: 1px solid #5c655a;
+  border-radius: 50%;
+  font-size: 12px;
+  background: #40493f;
+}
+
+@media (min-width: 768px) {
+  .invoice-studio__rail {
+    display: flex;
+    width: 56px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .invoice-studio__rail {
+    width: 65px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .invoice-studio__rail {
+    width: 86px;
+  }
+}
+
+@media print {
+  .invoice-studio__rail {
+    display: none !important;
+  }
+}

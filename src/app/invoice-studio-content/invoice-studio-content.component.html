@@ -1,0 +1,52 @@
+<div class="invoice-studio__content">
+  <section class="invoice-studio__heading">
+    <div class="invoice-studio__breadcrumb">
+      Workspace <span class="invoice-studio__breadcrumb-separator">/</span> Templates
+      <span class="invoice-studio__breadcrumb-separator">/</span> <b class="invoice-studio__breadcrumb-current">Editor</b>
+    </div>
+    <button
+      class="ui-button--primary ui-button"
+      id="save"
+      (click)="studio.save()">
+      <svg
+        class="ui-icon"
+        viewBox="0 0 24 24">
+        <path
+          class="ui-icon__path"
+          d="m5 12 4 4L19 6" />
+      </svg>
+      Save template
+    </button>
+  </section>
+
+  <div class="invoice-studio__mobile-tabs">
+    <button
+      [class.invoice-studio__mobile-tab--active]="studio.mobileView() === studio.mobileViews.editor"
+      [attr.aria-pressed]="studio.mobileView() === studio.mobileViews.editor"
+      class="ui-button invoice-studio__mobile-tab"
+      (click)="studio.mobileView.set(studio.mobileViews.editor)">
+      Settings
+    </button>
+    <button
+      [class.invoice-studio__mobile-tab--active]="studio.mobileView() === studio.mobileViews.preview"
+      [attr.aria-pressed]="studio.mobileView() === studio.mobileViews.preview"
+      class="ui-button invoice-studio__mobile-tab"
+      (click)="studio.mobileView.set(studio.mobileViews.preview)">
+      Preview
+    </button>
+  </div>
+
+  <main class="invoice-studio__main">
+    <app-invoice-editor class="invoice-editor" />
+
+    <app-invoice-preview
+      [state]="studio.state()"
+      class="invoice-preview"
+      (printRequested)="studio.print()" />
+  </main>
+
+  <footer class="invoice-studio__footer">
+    <span class="invoice-studio__copyright">Folio Studio © 2026</span>
+    <span class="invoice-studio__tagline">Made for your business</span>
+  </footer>
+</div>

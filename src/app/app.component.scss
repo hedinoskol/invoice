@@ -1,0 +1,70 @@
+.invoice-studio {
+  --page-gutter: 16px;
+  --rail-width: 0px;
+  --editor-gutter: 20px;
+  --preview-gutter: 12px;
+}
+
+.invoice-studio__toast {
+  pointer-events: none;
+  position: fixed;
+  z-index: 10;
+  bottom: 28px;
+  left: 50%;
+  transform: translate(-50%, 15px);
+  max-width: 90%;
+  padding: 16px 24px;
+  border-radius: 9px;
+  font-size: 12px;
+  color: white;
+  opacity: 0;
+  background: #252b28;
+  box-shadow: 0 8px 30px #0003;
+  transition: 0.25s;
+}
+
+.invoice-studio__toast.invoice-studio__toast--visible {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+@media (min-width: 480px) {
+  .invoice-studio {
+    --page-gutter: 12px;
+    --editor-gutter: 12px;
+    --preview-gutter: 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  .invoice-studio {
+    --rail-width: 56px;
+    --page-gutter: 24px;
+    --editor-gutter: 20px;
+    --preview-gutter: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .invoice-studio {
+    --rail-width: 65px;
+    --page-gutter: 32px;
+    --editor-gutter: 24px;
+    --preview-gutter: 24px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .invoice-studio {
+    --rail-width: 86px;
+    --page-gutter: 40px;
+    --editor-gutter: 24px;
+    --preview-gutter: 32px;
+  }
+}
+
+@media print {
+  .invoice-studio__toast {
+    display: none !important;
+  }
+}

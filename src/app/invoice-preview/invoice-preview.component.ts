@@ -1,13 +1,14 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 
-import { getContrastInk } from './color.util';
-import { FONT_FAMILIES } from './template-state.constants';
-import type { TemplateState } from './template-state.model';
+import { getContrastInk } from '../color.util';
+import { FONT_FAMILIES } from '../template-state.constants';
+import type { TemplateState } from '../template-state.model';
 
 @Component({
   selector: 'app-invoice-preview',
   standalone: true,
   templateUrl: './invoice-preview.component.html',
+  styleUrl: './invoice-preview.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InvoicePreviewComponent {

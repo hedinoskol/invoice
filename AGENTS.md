@@ -19,6 +19,9 @@ determine mechanically enforced code style.
 
 ## Verification
 
+Use the spacing scale 2, 4, 6, 8, 12, 16, 20, 24, 32 and 40px for interface padding, margins and gaps. Zero and auto are allowed; layout
+offsets matching a sidebar width and physical print dimensions are separate from the spacing scale.
+
 Use BEM classes for application elements and state modifiers. Style classes instead of HTML tags or IDs; element selectors are reserved for
 the global reset in `src/reboot.scss`. Keep the mobile-first breakpoints at 480, 768, 1024 and 1280px.
 

@@ -2,3 +2,6 @@ node_modules/
 dist/
 .angular/
 .idea/
+
+# Installed agent instructions are maintained separately from application code.
+.agents/skills/
