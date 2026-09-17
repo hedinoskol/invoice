@@ -14,6 +14,20 @@ export default {
       extends: ['stylelint-config-standard-scss'],
       files: ['**/*.scss'],
     },
+    {
+      files: ['src/**/*.scss'],
+      rules: {
+        'selector-max-id': 0,
+        'selector-max-type': 0,
+      },
+    },
+    {
+      files: ['src/reboot.scss'],
+      rules: {
+        'selector-max-id': null,
+        'selector-max-type': null,
+      },
+    },
   ],
   rules: {
     'alpha-value-notation': 'number',

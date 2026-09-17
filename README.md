@@ -57,6 +57,9 @@ current browser's localStorage. Invoice amounts are sample data. The PDF button 
 
 ## Features
 
+The layout is mobile-first, with `min-width` breakpoints at 480, 768, 1024 and 1280 px. Below 768 px, Settings and Preview use separate
+tabs; from 768 px they appear side by side. Print and reduced-motion styles are handled separately.
+
 - Live invoice preview with brand colors, fonts and logo upload
 - Editable company, recipient, title, payment terms and thank-you note
 - Payment-method settings, local saving and reset to the last saved template

@@ -1,156 +1,213 @@
-<div class="preview-toolbar">
-  <div>
-    <span class="live-dot"></span>
-    <b>Preview</b>
-    <span class="live-label">Updates in real time</span>
+<div class="invoice-preview__toolbar">
+  <div class="invoice-preview__toolbar-heading">
+    <b class="invoice-preview__toolbar-title">Preview</b>
+    <span
+      class="invoice-preview__live-label"
+      id="previewName">
+      {{ state().name || 'Untitled template' }}
+    </span>
   </div>
   <button
-    class="print-button"
+    class="invoice-preview__print-button ui-button"
     id="print"
     aria-label="Print or save as PDF"
     title="Print or save as PDF"
     (click)="printRequested.emit()">
-    <svg viewBox="0 0 24 24">
-      <path d="M7 8V3h10v5M7 17H4V9h16v8h-3M7 14h10v7H7zM16 11h1" />
+    <svg
+      class="ui-icon invoice-preview__print-icon"
+      viewBox="0 0 24 24">
+      <path
+        class="ui-icon__path"
+        d="M7 8V3h10v5M7 17H4V9h16v8h-3M7 14h10v7H7zM16 11h1" />
     </svg>
-    <span>PDF</span>
+    <span class="invoice-preview__text">PDF</span>
   </button>
 </div>
 
-<div class="canvas">
-  <div class="paper-caption">
-    <span id="previewName">{{ state().name || 'Untitled template' }}</span>
-    <span>A4 В· 210 Г— 297 mm</span>
-  </div>
-
+<div class="invoice-preview__canvas">
   <article
     [style.--accent]="state().accent"
     [style.--ink]="state().ink"
     [style.--accent-ink]="accentInk()"
     [style.--paper-font]="paperFont()"
-    class="paper"
+    class="invoice-preview__paper"
     id="invoice">
-    <div class="invoice-brand-row">
-      <div class="invoice-brand">
+    <div class="invoice-preview__brand-row">
+      <div class="invoice-preview__brand">
         <span
-          [style.background]="state().accent"
+          [class.invoice-preview__logo--empty]="!state().logo"
           [style.display]="state().logoVisible ? 'flex' : 'none'"
-          class="invoice-logo"
+          class="invoice-preview__logo"
           id="invoiceLogo">
           @if (state().logo) {
             <img
               [src]="state().logo"
+              class="invoice-preview__logo-image"
               alt="Company logo" />
           } @else {
-            f<span>в†—</span>
+            <svg
+              class="ui-icon--placeholder ui-icon"
+              viewBox="0 0 24 24"
+              role="img"
+              aria-label="Logo placeholder">
+              <rect
+                class="ui-icon__shape"
+                x="3"
+                y="3"
+                width="18"
+                height="18"
+                rx="3" />
+              <circle
+                class="ui-icon__shape"
+                cx="8"
+                cy="8"
+                r="1.5" />
+              <path
+                class="ui-icon__path"
+                d="m3 17 5-5 4 4 3-3 6 6" />
+            </svg>
           }
         </span>
-        <div>
-          <b id="companyView">{{ state().company }}</b>
-          <span>Design with character</span>
+        <div class="invoice-preview__group">
+          <b
+            class="invoice-preview__company-name"
+            id="companyView"
+            >{{ state().company }}</b
+          >
+          <span class="invoice-preview__company-tagline">Design with character</span>
         </div>
       </div>
-      <span class="invoice-category">DESIGN STUDIO<br />INVOICE / 2026</span>
+      <span class="invoice-preview__category">DESIGN STUDIO<br class="ui-text__break" />INVOICE / 2026</span>
     </div>
 
-    <div class="invoice-title">
-      <h2 id="titleView">{{ state().invoiceTitle }}</h2>
-      <span>No. 2026вЂ”042</span>
+    <div class="invoice-preview__title">
+      <h2
+        class="ui-heading--section ui-heading invoice-preview__document-title"
+        id="titleView">
+        {{ state().invoiceTitle }}
+      </h2>
+      <span class="invoice-preview__number">No. 2026вЂ”042</span>
     </div>
 
-    <div class="invoice-meta">
-      <div>
-        <small>ISSUED ON</small>
-        <b>September 16, 2026</b>
+    <div class="invoice-preview__metadata">
+      <div class="invoice-preview__metadata-item">
+        <small class="ui-text__hint invoice-preview__metadata-label">ISSUED ON</small>
+        <b class="invoice-preview__metadata-value">September 16, 2026</b>
       </div>
-      <div>
-        <small>DUE DATE</small>
-        <b>September 30, 2026</b>
+      <div class="invoice-preview__metadata-item">
+        <small class="ui-text__hint invoice-preview__metadata-label">DUE DATE</small>
+        <b class="invoice-preview__metadata-value">September 30, 2026</b>
       </div>
-      <div>
-        <small>AMOUNT DUE</small>
-        <strong>$4,800.00</strong>
+      <div class="invoice-preview__metadata-item">
+        <small class="ui-text__hint invoice-preview__metadata-label">AMOUNT DUE</small>
+        <strong class="invoice-preview__amount">$4,800.00</strong>
       </div>
     </div>
 
-    <div class="addresses">
-      <div>
-        <small>FROM</small>
-        <h3 id="senderView">{{ state().company }}</h3>
-        <p>
-          Kate Anderson<br />Tax ID 123456789<br /><span id="emailView">{{ state().email }}</span>
+    <div class="invoice-preview__addresses">
+      <div class="invoice-preview__group">
+        <small class="ui-text__hint">FROM</small>
+        <h3
+          class="ui-heading--subsection ui-heading invoice-preview__address-name"
+          id="senderView">
+          {{ state().company }}
+        </h3>
+        <p class="ui-text invoice-preview__address-details">
+          Kate Anderson<br class="ui-text__break" />Tax ID 123456789<br class="ui-text__break" /><span
+            class="invoice-preview__text"
+            id="emailView"
+            >{{ state().email }}</span
+          >
         </p>
       </div>
-      <div>
-        <small>BILL TO</small>
-        <h3 id="clientView">{{ state().client }}</h3>
-        <p>Alex Morgan<br />7 Park Street, London<br />team&#64;horizon.design</p>
+      <div class="invoice-preview__group">
+        <small class="ui-text__hint">BILL TO</small>
+        <h3
+          class="ui-heading--subsection ui-heading invoice-preview__address-name"
+          id="clientView">
+          {{ state().client }}
+        </h3>
+        <p class="ui-text invoice-preview__address-details">
+          Alex Morgan<br class="ui-text__break" />7 Park Street, London<br class="ui-text__break" />team&#64;horizon.design
+        </p>
       </div>
     </div>
 
-    <table>
-      <thead>
-        <tr>
-          <th>DESCRIPTION</th>
-          <th>QTY</th>
-          <th>AMOUNT</th>
+    <table class="invoice-table">
+      <thead class="invoice-table__head">
+        <tr class="invoice-table__row">
+          <th class="invoice-table__heading">DESCRIPTION</th>
+          <th class="invoice-table__heading">QTY</th>
+          <th class="invoice-table__heading">AMOUNT</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>
-            <b>Brand identity</b>
-            <small>Logo, color palette & typography</small>
+      <tbody class="invoice-table__body">
+        <tr class="invoice-table__row">
+          <td class="invoice-table__cell">
+            <b class="invoice-table__item-name">Brand identity</b>
+            <small class="ui-text__hint invoice-table__item-description">Logo, color palette & typography</small>
           </td>
-          <td>1</td>
-          <td>$2,750.00</td>
+          <td class="invoice-table__cell">1</td>
+          <td class="invoice-table__cell">$2,750.00</td>
         </tr>
-        <tr>
-          <td>
-            <b>Website design</b>
-            <small>Homepage & 4 inner pages</small>
+        <tr class="invoice-table__row">
+          <td class="invoice-table__cell">
+            <b class="invoice-table__item-name">Website design</b>
+            <small class="ui-text__hint invoice-table__item-description">Homepage & 4 inner pages</small>
           </td>
-          <td>1</td>
-          <td>$1,800.00</td>
+          <td class="invoice-table__cell">1</td>
+          <td class="invoice-table__cell">$1,800.00</td>
         </tr>
-        <tr>
-          <td>
-            <b>Brand guidelines</b>
-            <small>Your brandвЂ™s everyday playbook</small>
+        <tr class="invoice-table__row">
+          <td class="invoice-table__cell">
+            <b class="invoice-table__item-name">Brand guidelines</b>
+            <small class="ui-text__hint invoice-table__item-description">Your brandвЂ™s everyday playbook</small>
           </td>
-          <td>1</td>
-          <td>$250.00</td>
+          <td class="invoice-table__cell">1</td>
+          <td class="invoice-table__cell">$250.00</td>
         </tr>
       </tbody>
     </table>
 
-    <div class="totals">
-      <div>
-        <span>Subtotal</span>
-        <b>$4,800.00</b>
+    <div class="invoice-preview__totals">
+      <div class="invoice-preview__total-row">
+        <span class="invoice-preview__total-label">Subtotal</span>
+        <b class="invoice-preview__subtotal">$4,800.00</b>
       </div>
-      <div>
-        <span>VAT</span>
-        <span>Not applicable</span>
+      <div class="invoice-preview__total-row">
+        <span class="invoice-preview__total-label">VAT</span>
+        <span class="invoice-preview__total-label">Not applicable</span>
       </div>
     </div>
 
-    <div class="grand-total">
-      <span>Total due</span>
-      <strong><span>$</span>4,800.00</strong>
+    <div class="invoice-preview__grand-total">
+      <span class="invoice-preview__grand-total-label">Total due</span>
+      <strong class="invoice-preview__grand-total-value"><span class="invoice-preview__currency">$</span>4,800.00</strong>
     </div>
 
-    <div class="invoice-notes">
-      <h4>Payment terms</h4>
-      <p id="termsView">{{ state().terms }}</p>
-      <div id="invoice-payments">{{ paymentSummary() }}</div>
+    <div class="invoice-preview__notes">
+      <h4 class="ui-heading--minor ui-heading invoice-preview__notes-title">Payment terms</h4>
+      <p
+        class="ui-text invoice-preview__terms"
+        id="termsView">
+        {{ state().terms }}
+      </p>
+      <div
+        class="invoice-preview__payment-summary"
+        id="invoice-payments">
+        {{ paymentSummary() }}
+      </div>
     </div>
 
-    <footer class="invoice-footer">
-      <p id="noteView">{{ state().note }}</p>
-      <span>01 / 01</span>
+    <footer class="invoice-preview__footer">
+      <p
+        class="ui-text invoice-preview__note"
+        id="noteView">
+        {{ state().note }}
+      </p>
+      <span class="invoice-preview__page-number">01 / 01</span>
     </footer>
   </article>
 
-  <div class="preview-bottom"><span>в—€</span> Your style. On every invoice.</div>
+  <div class="invoice-preview__bottom"><span class="invoice-preview__bottom-icon">в—€</span> Your style. On every invoice.</div>
 </div>

@@ -18,7 +18,7 @@ export const DEFAULT_TEMPLATE: TemplateState = {
 
 export const FONT_FAMILIES: Record<Font, string> = {
   mono: "'Courier New',monospace",
-  sans: "'Golos Text',Arial,sans-serif",
+  sans: "'Roboto',Arial,sans-serif",
   serif: "Georgia,'Times New Roman',serif",
 };
 

@@ -80,7 +80,7 @@
 
   &:focus-visible {
     user-select: none;
-    outline: 1px solid rgb(var(--osk-primary-500));
+    outline: 1px solid rgb(var(--osk-primary));
     -webkit-tap-highlight-color: rgb(0 0 0 / 0);
     -webkit-touch-callout: none;
   }
@@ -190,7 +190,7 @@
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus,
   &:-webkit-autofill:active {
-    caret-color: rgb(var(--osk-white-950)) !important;
+    caret-color: rgb(var(--osk-white)) !important;
   }
 }
 

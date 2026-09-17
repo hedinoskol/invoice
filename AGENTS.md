@@ -19,6 +19,9 @@ determine mechanically enforced code style.
 
 ## Verification
 
+Use BEM classes for application elements and state modifiers. Style classes instead of HTML tags or IDs; element selectors are reserved for
+the global reset in `src/reboot.scss`. Keep the mobile-first breakpoints at 480, 768, 1024 and 1280px.
+
 Use `npm run lint` and `npm run format:check` for code and formatting checks. Run `npm run build` after changing application code or build
 configuration. No test runner is currently configured; do not report tests as passed when only lint or build ran.
 

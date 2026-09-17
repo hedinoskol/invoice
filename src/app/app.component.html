@@ -1,88 +1,97 @@
-<div [attr.data-mobile-view]="mobileView()">
-  <aside class="rail">
+<div
+  [class.invoice-studio--preview]="mobileView() === mobileViews.preview"
+  class="invoice-studio">
+  <aside class="invoice-studio__rail">
     <a
-      class="brand"
+      class="invoice-studio__brand ui-link"
       href="#"
       aria-label="Folio">
-      f<span>olio</span><b>В®</b>
+      f<span class="invoice-studio__brand-name">olio</span><b class="invoice-studio__brand-mark">В®</b>
     </a>
-    <div class="rail-rule"></div>
+    <div class="invoice-studio__rail-divider"></div>
     <button
-      class="rail-icon selected"
+      class="invoice-studio__navigation-button ui-button invoice-studio__navigation-button--selected"
       aria-label="Template editor"
       title="Template editor">
-      <svg viewBox="0 0 24 24">
+      <svg
+        class="ui-icon"
+        viewBox="0 0 24 24">
         <rect
+          class="ui-icon__shape"
           x="4"
           y="3"
           width="16"
           height="18"
           rx="3" />
-        <path d="M8 8h8M8 12h8M8 16h4" />
+        <path
+          class="ui-icon__path"
+          d="M8 8h8M8 12h8M8 16h4" />
       </svg>
     </button>
-    <div class="rail-bottom">
-      <span class="avatar">KA</span>
+    <div class="invoice-studio__rail-footer">
+      <span class="invoice-studio__avatar">KA</span>
     </div>
   </aside>
 
-  <div class="app">
-    <header>
-      <div class="crumb">Workspace <span>/</span> Templates <span>/</span> <b>Editor</b></div>
-      <span class="workspace"> Forma Studio <span class="workspace-avatar">F</span> </span>
-    </header>
-
-    <section class="page-heading">
-      <div>
-        <div class="eyebrow">YOUR BRAND. EVERY DETAIL.</div>
-        <h1>Make it your invoice<span>.</span></h1>
-        <p>A familiar touch, from first impression to final payment.</p>
+  <div class="invoice-studio__content">
+    <section class="invoice-studio__heading">
+      <div class="invoice-studio__breadcrumb">
+        Workspace <span class="invoice-studio__breadcrumb-separator">/</span> Templates
+        <span class="invoice-studio__breadcrumb-separator">/</span> <b class="invoice-studio__breadcrumb-current">Editor</b>
       </div>
       <button
-        class="primary"
+        class="ui-button--primary ui-button"
         id="save"
         (click)="save()">
-        <svg viewBox="0 0 24 24">
-          <path d="m5 12 4 4L19 6" />
+        <svg
+          class="ui-icon"
+          viewBox="0 0 24 24">
+          <path
+            class="ui-icon__path"
+            d="m5 12 4 4L19 6" />
         </svg>
         Save template
       </button>
     </section>
 
-    <div class="mobile-tabs">
+    <div class="invoice-studio__mobile-tabs">
       <button
-        [class.active]="mobileView() === mobileViews.editor"
+        [class.invoice-studio__mobile-tab--active]="mobileView() === mobileViews.editor"
+        class="ui-button invoice-studio__mobile-tab"
         (click)="mobileView.set(mobileViews.editor)">
         Settings
       </button>
       <button
-        [class.active]="mobileView() === mobileViews.preview"
+        [class.invoice-studio__mobile-tab--active]="mobileView() === mobileViews.preview"
+        class="ui-button invoice-studio__mobile-tab"
         (click)="mobileView.set(mobileViews.preview)">
         Preview
       </button>
     </div>
 
-    <main>
-      <section class="editor">
-        <div class="editor-heading">
-          <h2>Appearance</h2>
-          <span class="step">{{ activeTab() === editorTab.design ? '01 / 02' : '02 / 02' }}</span>
+    <main class="invoice-studio__main">
+      <section class="invoice-editor">
+        <div class="invoice-editor__heading">
+          <h2 class="ui-heading--section ui-heading">Appearance</h2>
+          <span class="invoice-editor__step">{{ activeTab() === editorTab.design ? '01 / 02' : '02 / 02' }}</span>
         </div>
 
         <div
-          class="tabs"
+          class="invoice-editor__tabs"
           role="tablist"
           aria-label="Template settings">
           <button
-            [class.active]="activeTab() === editorTab.design"
+            [class.invoice-editor__tab--active]="activeTab() === editorTab.design"
             [attr.aria-selected]="activeTab() === editorTab.design"
+            class="ui-button invoice-editor__tab"
             role="tab"
             (click)="activeTab.set(editorTab.design)">
             Design
           </button>
           <button
-            [class.active]="activeTab() === editorTab.content"
+            [class.invoice-editor__tab--active]="activeTab() === editorTab.content"
             [attr.aria-selected]="activeTab() === editorTab.content"
+            class="ui-button invoice-editor__tab"
             role="tab"
             (click)="activeTab.set(editorTab.content)">
             Content
@@ -91,58 +100,86 @@
 
         <div
           [hidden]="activeTab() !== editorTab.design"
-          class="panel"
+          class="invoice-editor__panel"
           id="design-panel">
-          <div class="field">
-            <label for="name">Template name</label>
+          <div class="ui-field">
+            <label
+              class="ui-field__label"
+              for="name"
+              >Template name</label
+            >
             <input
               [ngModel]="state().name"
               [maxlength]="maxTemplateNameLength"
+              class="ui-input"
               id="name"
               (ngModelChange)="update('name', $event)" />
-            <small>Only visible to you</small>
+            <small class="ui-text__hint">Only visible to you</small>
           </div>
 
-          <div class="divider"></div>
+          <div class="invoice-editor__divider"></div>
 
-          <div class="section-label">
-            <h3>Company logo</h3>
-            <label class="switch">
+          <div class="invoice-editor__section-heading">
+            <h3 class="ui-heading--subsection ui-heading">Company logo</h3>
+            <label class="ui-switch ui-field__label">
               <input
                 [ngModel]="state().logoVisible"
+                class="ui-input ui-switch__input"
                 id="logoVisible"
                 type="checkbox"
                 aria-label="Show company logo"
                 (ngModelChange)="update('logoVisible', $event)" />
-              <span></span>
+              <span class="ui-switch__track"></span>
             </label>
           </div>
 
-          <div class="upload">
+          <div class="invoice-editor__upload">
             <div
-              [style.background]="state().accent"
-              class="logo-sample"
+              [class.invoice-editor__logo--empty]="!state().logo"
+              class="invoice-editor__logo"
               id="logoSample">
               @if (state().logo) {
                 <img
                   [src]="state().logo"
+                  class="invoice-editor__logo-image"
                   alt="Company logo" />
               } @else {
-                f<span>в†—</span>
+                <svg
+                  class="ui-icon--placeholder ui-icon"
+                  viewBox="0 0 24 24"
+                  role="img"
+                  aria-label="Logo placeholder">
+                  <rect
+                    class="ui-icon__shape"
+                    x="3"
+                    y="3"
+                    width="18"
+                    height="18"
+                    rx="3" />
+                  <circle
+                    class="ui-icon__shape"
+                    cx="8"
+                    cy="8"
+                    r="1.5" />
+                  <path
+                    class="ui-icon__path"
+                    d="m3 17 5-5 4 4 3-3 6 6" />
+                </svg>
               }
             </div>
-            <div>
+            <div class="invoice-editor__group">
               <button
-                class="text-button"
+                class="ui-button--text ui-button"
                 id="uploadButton"
                 (click)="logoFile.click()">
-                Upload logo <span>в†—</span>
+                Upload logo
               </button>
-              <small>PNG, JPG or SVG В· up to 2 MB</small>
+              <small class="ui-text__hint">PNG, JPG or SVG В· up to 2 MB</small>
             </div>
             <input
               #logoFile
               [accept]="logoAccept"
+              class="ui-input"
               type="file"
               id="logoFile"
               hidden
@@ -151,164 +188,221 @@
 
           <button
             [hidden]="!state().logo"
+            class="ui-button--text invoice-editor__remove-logo ui-button"
             id="removeLogo"
-            class="text-button remove"
             (click)="update('logo', null)">
-            Restore default logo
+            Remove logo
           </button>
 
-          <div class="divider"></div>
+          <div class="invoice-editor__divider"></div>
 
-          <h3>Brand colors</h3>
-          <div class="color-row">
-            <label for="accent">
+          <h3 class="ui-heading--subsection ui-heading">Brand colors</h3>
+          <div class="invoice-editor__color-row">
+            <label
+              class="ui-field__label invoice-editor__color-label"
+              for="accent">
               Primary color
-              <small>Highlights and invoice total</small>
+              <small class="ui-text__hint invoice-editor__color-hint">Highlights and invoice total</small>
             </label>
-            <div class="color-input">
+            <div class="invoice-editor__color-input">
               <input
                 [ngModel]="state().accent"
+                class="ui-input invoice-editor__color-control"
                 id="accent"
                 type="color"
                 aria-label="Primary color"
                 (ngModelChange)="update('accent', $event)" />
-              <span id="accentHex">{{ accentHex() }}</span>
+              <span
+                class="invoice-editor__text"
+                id="accentHex"
+                >{{ accentHex() }}</span
+              >
             </div>
           </div>
 
-          <div class="color-row">
-            <label for="ink">
+          <div class="invoice-editor__color-row">
+            <label
+              class="ui-field__label invoice-editor__color-label"
+              for="ink">
               Text color
-              <small>Headings and body text</small>
+              <small class="ui-text__hint invoice-editor__color-hint">Headings and body text</small>
             </label>
-            <div class="color-input">
+            <div class="invoice-editor__color-input">
               <input
                 [ngModel]="state().ink"
+                class="ui-input invoice-editor__color-control"
                 id="ink"
                 type="color"
                 aria-label="Text color"
                 (ngModelChange)="update('ink', $event)" />
-              <span id="inkHex">{{ inkHex() }}</span>
+              <span
+                class="invoice-editor__text"
+                id="inkHex"
+                >{{ inkHex() }}</span
+              >
             </div>
           </div>
 
-          <div class="palette-label">Curated combinations</div>
-          <div class="palettes">
+          <div class="invoice-editor__palette-label">Curated combinations</div>
+          <div class="invoice-editor__palettes">
             @for (palette of palettes(); track palette.accent) {
               <button
-                [class.active]="palette.isSelected"
+                [class.invoice-editor__palette--active]="palette.isSelected"
                 [attr.aria-pressed]="palette.isSelected"
                 [attr.aria-label]="palette.label"
-                class="palette"
+                class="invoice-editor__palette ui-button"
                 (click)="setPalette(palette.accent, palette.ink)">
-                <i [style.background]="palette.accent"></i>
-                <i [style.background]="palette.ink"></i>
-                <span>✓</span>
+                <i
+                  [style.background]="palette.accent"
+                  class="invoice-editor__palette-swatch"></i>
+                <i
+                  [style.background]="palette.ink"
+                  class="invoice-editor__palette-swatch"></i>
+                <span class="invoice-editor__palette-check">✓</span>
               </button>
             }
           </div>
 
-          <div class="divider"></div>
+          <div class="invoice-editor__divider"></div>
 
-          <label for="font">Typography</label>
+          <label
+            class="ui-field__label"
+            for="font"
+            >Typography</label
+          >
           <select
             [ngModel]="state().font"
+            class="ui-select"
             id="font"
             (ngModelChange)="update('font', $event)">
             @for (font of fontOptions; track font.value) {
-              <option [value]="font.value">{{ font.label }}</option>
+              <option
+                [value]="font.value"
+                class="invoice-editor__option">
+                {{ font.label }}
+              </option>
             }
           </select>
 
           <div
             [style.font-family]="paperFont()"
-            class="type-example">
-            <span>Aa</span>
-            <div>Good design is<br />in the details.</div>
-            <small>Aa Bb Cc<br />0123456789</small>
+            class="invoice-editor__type-example">
+            <span class="invoice-editor__font-sample">Aa</span>
+            <div class="invoice-editor__font-description">Good design is<br class="ui-text__break" />in the details.</div>
+            <small class="ui-text__hint invoice-editor__font-alphabet">Aa Bb Cc<br class="ui-text__break" />0123456789</small>
           </div>
 
-          <div class="divider"></div>
+          <div class="invoice-editor__divider"></div>
 
-          <div class="section-label">
-            <div>
-              <h3>Payment methods</h3>
-              <small>Shown at the bottom of your invoice</small>
+          <div class="invoice-editor__section-heading">
+            <div class="invoice-editor__group">
+              <h3 class="ui-heading--subsection ui-heading">Payment methods</h3>
+              <small class="ui-text__hint">Shown at the bottom of your invoice</small>
             </div>
             <button
-              class="text-button"
+              class="ui-button--text ui-button"
               id="paymentsButton"
               (click)="openPayments(paymentsDialog)">
-              Manage в†—
+              Manage
             </button>
           </div>
 
           <div
-            class="payment-tags"
+            class="invoice-editor__payment-tags"
             id="paymentTags">
             @for (payment of state().payments; track payment) {
-              <span>{{ payment }}</span>
+              <span class="invoice-editor__payment-tag">{{ payment }}</span>
             } @empty {
-              <span>None selected</span>
+              <span class="invoice-editor__payment-tag">None selected</span>
             }
           </div>
         </div>
 
         <div
           [hidden]="activeTab() !== editorTab.content"
-          class="panel"
+          class="invoice-editor__panel"
           id="content-panel">
-          <div class="field">
-            <label for="company">Company name</label>
+          <div class="ui-field">
+            <label
+              class="ui-field__label"
+              for="company"
+              >Company name</label
+            >
             <input
               [ngModel]="state().company"
               [maxlength]="maxTemplateNameLength"
+              class="ui-input"
               id="company"
               (ngModelChange)="update('company', $event)" />
           </div>
 
-          <div class="field">
-            <label for="email">Company email</label>
+          <div class="ui-field">
+            <label
+              class="ui-field__label"
+              for="email"
+              >Company email</label
+            >
             <input
               [ngModel]="state().email"
+              class="ui-input"
               id="email"
               type="email"
               maxlength="80"
               (ngModelChange)="update('email', $event)" />
           </div>
 
-          <div class="field">
-            <label for="client">Bill to</label>
+          <div class="ui-field">
+            <label
+              class="ui-field__label"
+              for="client"
+              >Bill to</label
+            >
             <input
               [ngModel]="state().client"
               [maxlength]="maxTemplateNameLength"
+              class="ui-input"
               id="client"
               (ngModelChange)="update('client', $event)" />
           </div>
 
-          <div class="field">
-            <label for="invoiceTitle">Document title</label>
+          <div class="ui-field">
+            <label
+              class="ui-field__label"
+              for="invoiceTitle"
+              >Document title</label
+            >
             <input
               [ngModel]="state().invoiceTitle"
+              class="ui-input"
               id="invoiceTitle"
               maxlength="50"
               (ngModelChange)="update('invoiceTitle', $event)" />
           </div>
 
-          <div class="field">
-            <label for="note">Thank-you note</label>
+          <div class="ui-field">
+            <label
+              class="ui-field__label"
+              for="note"
+              >Thank-you note</label
+            >
             <textarea
               [ngModel]="state().note"
+              class="ui-textarea"
               id="note"
               rows="3"
               maxlength="250"
               (ngModelChange)="update('note', $event)"></textarea>
           </div>
 
-          <div class="field">
-            <label for="terms">Payment terms</label>
+          <div class="ui-field">
+            <label
+              class="ui-field__label"
+              for="terms"
+              >Payment terms</label
+            >
             <textarea
               [ngModel]="state().terms"
+              class="ui-textarea"
               id="terms"
               rows="3"
               maxlength="350"
@@ -316,58 +410,63 @@
           </div>
         </div>
 
-        <div class="editor-footer">
+        <div class="invoice-editor__footer">
           <button
-            class="reset"
+            class="invoice-editor__reset ui-button"
             id="reset"
             (click)="reset()">
-            в†є <span>Reset changes</span>
+            в†є <span class="invoice-editor__reset-label">Reset changes</span>
           </button>
-          <span id="saveStatus">{{ isSaved() ? 'Saved' : 'Unsaved changes' }}</span>
+          <span
+            class="invoice-editor__save-status"
+            id="saveStatus"
+            >{{ isSaved() ? 'Saved' : 'Unsaved changes' }}</span
+          >
         </div>
       </section>
 
       <app-invoice-preview
         [state]="state()"
-        class="preview"
+        class="invoice-preview"
         (printRequested)="print()" />
     </main>
 
-    <footer class="app-footer">
-      <span>Folio Studio В© 2026</span>
-      <span>Made for your business</span>
+    <footer class="invoice-studio__footer">
+      <span class="invoice-studio__copyright">Folio Studio В© 2026</span>
+      <span class="invoice-studio__tagline">Made for your business</span>
     </footer>
   </div>
 
   <dialog
     #paymentsDialog
+    class="payment-dialog"
     id="paymentsDialog">
     <form
+      class="payment-dialog__form"
       method="dialog"
       (submit)="closePayments($event, paymentsDialog)">
-      <div class="dialog-heading">
-        <h2>Payment methods</h2>
+      <div class="payment-dialog__heading">
+        <h2 class="ui-heading--section ui-heading">Payment methods</h2>
         <button
+          class="payment-dialog__close ui-button"
           type="button"
           aria-label="Close"
-          class="close"
-          (click)="paymentsDialog.close()">
-          Г—
-        </button>
+          (click)="paymentsDialog.close()"></button>
       </div>
-      <p>Choose what appears on your invoice.</p>
+      <p class="ui-text payment-dialog__description">Choose what appears on your invoice.</p>
       @for (payment of paymentChoices(); track payment.id) {
-        <label class="check-row">
+        <label class="payment-dialog__option ui-field__label">
           <input
             [checked]="payment.isSelected"
             [id]="payment.id"
+            class="ui-input payment-dialog__checkbox"
             type="checkbox"
             (change)="togglePayment(payment.label, $event)" />
           {{ payment.label }}
         </label>
       }
       <button
-        class="primary"
+        class="ui-button--primary ui-button"
         id="applyPayments"
         value="apply">
         Apply changes
@@ -376,8 +475,8 @@
   </dialog>
 
   <div
-    [class.visible]="toastMessage()"
-    class="toast"
+    [class.invoice-studio__toast--visible]="toastMessage()"
+    class="invoice-studio__toast"
     role="status">
     {{ toastMessage() }}
   </div>
