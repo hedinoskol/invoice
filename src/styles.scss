@@ -1,19 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap');
+@use './reboot';
 
 :root {
-  font-family: 'Golos Text', Arial, sans-serif;
+  --osk-font-family-body: roboto, arial, sans-serif;
+  --osk-font-family-title: roboto, arial, sans-serif;
+  --osk-font-size-default: 16px;
+  --osk-font-weight-regular: 400;
+  --osk-font-weight-semibold: 600;
+  --osk-font-weight-bold: 700;
+  --osk-line-height-default: normal;
+  --osk-container-bg: 37 43 40;
+  --osk-primary-500: 117 155 33;
+  --osk-white-950: 37 43 40;
+
+  font-family: Roboto, Arial, sans-serif;
   font-size: 16px;
   color: #252b28;
   background: #f7f8f6;
   font-synthesis: none;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
 }
 
 button,
@@ -731,6 +734,7 @@ textarea {
 }
 
 .paper {
+  --osk-font-family-title: var(--paper-font);
   --accent: #cef75c;
   --ink: #252b28;
 
@@ -738,7 +742,7 @@ textarea {
   padding: 40px 40px 22px;
   border-top: 4px solid var(--accent);
   border-radius: 2px;
-  font-family: var(--paper-font, 'Golos Text', Arial, sans-serif);
+  font-family: var(--paper-font, Roboto, Arial, sans-serif);
   color: var(--ink);
   overflow-wrap: anywhere;
   background: #fff;
@@ -1034,6 +1038,7 @@ td small {
 
 dialog {
   width: min(430px, calc(100% - 32px));
+  margin: auto;
   padding: 28px;
   border: 1px solid #dce2d3;
   border-radius: 16px;

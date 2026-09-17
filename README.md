@@ -37,6 +37,9 @@ dependencies.
 
 ## Project guidance
 
+Global styles are in `src/styles.scss`, which loads `src/reboot.scss` before application rules. The `--osk-*` reset variables are defined in
+the global stylesheet. New Angular components use SCSS by default.
+
 [AGENTS.md](AGENTS.md) links to the five project skills in `.agents/skills/`: Angular development, development conventions, TypeScript,
 branch review and commit messages. They are adapted to this repository's stack from the supplied Claude skills.
 
